@@ -1,0 +1,227 @@
+/* master styles */
+body {
+    font-family: 'Open Sans Condensed', sans-serif;
+    margin: 0px;
+}
+
+.nav-wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 25px;
+    border-bottom: 1px solid rgb(235, 233, 233);
+}
+
+.right-side {
+    display: flex;
+}
+
+.nav-wrapper > .right-side > div {
+    margin-right: 20px;
+    font-size: 0.9em;
+    text-transform: uppercase;
+}
+
+.nav-link-wrapper {
+    height: 22px;
+    border-bottom: 1px solid transparent;
+    transition: border-bottom 0.5s;
+}
+
+.nav-link-wrapper a{
+    color: #8a8a8a;
+    text-decoration: none;
+    transition: color 0.5s;
+}
+
+.nav-link-wrapper:hover {
+    border-bottom: 1px solid black;
+}
+
+.nav-link-wrapper a:hover {
+    color: black;
+}
+
+.active-nav-link {
+    border-bottom: 1px sold black;
+}
+
+.active-nav-link a{
+    color: black !important;
+}
+
+/* About page styles */
+.profile__wrap {
+	text-align: center;
+}
+
+.profile__photo {
+	width: 200px;
+	height: 300px;
+	object-fit: cover;
+	margin: 1em;
+}
+
+
+/*Responsive Styles*/
+@media (min-width: 700px) {
+	.profile__wrap {
+		width: 700px;
+		margin: 5em;
+		display: flex;
+		justify-content: space-between;
+		align-items: top;
+	}
+
+	.profile__photo {
+		margin-bottom: 0;
+		height: 400px;
+		width: auto;
+	}
+
+	.profile__info {
+		margin-left: 5em;
+		text-align: left;
+		flex-basis: 70%;
+		width: 70%;
+	}
+}
+
+
+
+
+/* potfolio styles */
+/* https://www.darkcode.info/2017/09/responsive-web-design-awesome-gallery.html */
+.gallerys{
+    padding: 20px;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .img{
+    display: inline-block;
+    width: 100%;
+    max-width: 340px;
+    height: 220px;
+    overflow: hidden;
+    margin: 10px;
+    /* cursor: pointer; */
+  }
+
+.img img{
+  width: auto;
+  height: 190px;
+  transition: .6s;
+}
+
+.img embed{
+  width: auto;
+  height: 190px;
+  transition: .6s;
+}
+
+.img script{
+  width: auto;
+  height: 190px;
+}
+
+.img p{
+  font-size: small;
+  text-align: left;
+  margin-top: auto;
+  margin-left: 4em;
+}
+
+
+
+
+
+
+
+.img1{
+  display: inline-block;
+  width: 100%;
+  max-width: 340px;
+  height: 220px;
+  overflow: hidden;
+  margin: 10px;
+  /* cursor: pointer; */
+}
+
+.img1 img{
+width: auto;
+height: 190px;
+transition: .6s;
+}
+
+.img1 embed{
+width: auto;
+height: 190px;
+transition: .6s;
+}
+
+.img1 script{
+width: auto;
+height: 190px;
+}
+
+.img1 p{
+font-size: small;
+text-align: left;
+margin-top: auto;
+margin-left: 4em;
+}
+
+
+
+
+
+  .sketch{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .sketch-holder {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .sketch p {
+    margin-top: 1em;
+    text-align:left; 
+    margin-left: 2em; 
+  }
+
+  .galleries p{
+    font-size: small;
+    text-align: left;
+    margin-top: auto;
+    margin-left: 4em;
+  }
+
+  .text {
+    margin-top: 0em;
+    margin-left: 4em;
+  }
+
+  .img img:hover{
+    transform: scale(.9);
+  }
+  @media (max-width:7000px){
+    .img {
+      margin: 10px 0;
+    }
+    .text {
+      margin-left: 1.5em;
+    }
+    .sketch{
+      margin: 10px 0;
+      margin-top: .1%;
+    }
+    .sketch p {
+      /* margin-top: 1em; */
+      text-align:left; 
+      margin-left: 4em; 
+    }
+    
+  }
