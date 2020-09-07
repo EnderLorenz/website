@@ -17,12 +17,11 @@ function setup() {
 function draw() {
   var max_iterations = 100;
 
-  x_center = 0;//slider1.value();
-  y_center = 0;//slider2.value();
-  length = 3;//slider3.value();
+  x_center = 0;
+  y_center = 0;
+  length = 3;
   angle = slider4.value();
   radius = slider5.value();
-  //var radius = 0.7885
   c = radius;
   R = (1+sqrt(1+32*c));
   loadPixels();

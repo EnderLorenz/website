@@ -11,27 +11,29 @@ var color = [];
 var flowfield;
 
 function setup() {
-
-  createCanvas(windowWidth, windowHeight);
+  if (windowWidth < windowHeight) {
+    canvasSize = windowWidth
+  } else {
+    canvasSize = windowHeight
+  }
+  canvas = createCanvas(windowWidth-50, windowHeight-50);
+  canvas.parent('img');
   background(0);
   cols = floor(width / scl);
   rows = floor(height / scl);
   fr = createP('');
-//noLoop();
   flowfield = new Array(cols * rows)
 
-  for (var i = 0; i < 2000; i++) {
-    red   =  Math.sin(i/8) * 127 + 50;
-    green =  Math.sin(i/8 - PI/2) * 127 + 15;
-    blue =   Math.sin(i/8 - PI) * 127 + 90;
+  for (var i = 0; i < 100; i++) {
+    red   =  Math.sin(i/8) * 127 + 150;
+    green =  Math.sin(i/8 - PI/2) * 127 + 115;
+    blue =   Math.sin(i/8 - PI) * 127 + 190;
     color = [red, green, blue, 2];
     particles[i] = new Particle(color);
   }
 }
 
 function draw() {
-  //background(255);
-  //randomSeed(10);
   var yoff = 0;
   for (var y = 0; y < rows; y++) {
     var xoff = 0;
@@ -42,14 +44,6 @@ function draw() {
       v.setMag(.5);
       flowfield[index] = v;
       xoff += incx;
-
-      // push();
-      // translate(x*scl, y*scl);
-      // rotate(v.heading());
-      // stroke(255, 50);
-      // strokeWeight(1);
-      // line(0, 0, scl, 0);
-      // pop();
     }
     yoff += incy;
     zoff += .00000001

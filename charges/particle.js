@@ -1,9 +1,7 @@
 function Particle(x, y, sign) {
   this.pos = createVector(x, y);
   this.prev = createVector(x, y);
-  // this.vel = p5.Vector.random2D();///createVector();
   this.vel = createVector();
-  //this.vel.setMag(random(2, 5));
   this.acc = createVector();
   this.sign = sign;
 

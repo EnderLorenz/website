@@ -11,8 +11,8 @@ var color = [];
 var flowfield;
 
 function setup() {
-
-  createCanvas(768, 768);
+  canvas = createCanvas(windowWidth-50, windowHeight-50);
+  canvas.parent('img');
   background(255);
   cols = floor(width / scl);
   rows = floor(height / scl);
@@ -21,20 +21,11 @@ function setup() {
   flowfield = new Array(cols * rows)
 
   for (var i = 0; i < 10000; i++) {
-    // red   =  Math.sin(i/8) * 127 + 70;
-    // green =  Math.sin(i/8 - PI/2) * 127 + 25;
-    // blue =   Math.sin(i/8 - PI) * 127 + 90;
-    // color = [red, green, blue, 2];
-    // particles[i] = new Particle(color);
     particles[i] = new Particle();
   }
-  //noLoop();
-
 }
 
 function draw() {
-// background(255);
-  //randomSeed(10);
   var yoff = 0;
   for (var y = 0; y < rows; y++) {
     var xoff = 0;
@@ -45,15 +36,6 @@ function draw() {
       v.setMag(.01);
       flowfield[index] = v;
       xoff += incx;
-
-      // stroke(0, 50);
-      // push();
-      // translate(x*scl, y*scl);
-      // rotate(v.heading());
-      // stroke(0, 50);
-      // strokeWeight(1);
-      // line(0, 0, scl, 0);
-      // pop();
     }
     yoff += incy;
 
@@ -67,52 +49,3 @@ function draw() {
   }
   fr.html(floor(frameRate()));
 }
-
-
-// function draw() {
-//   var yoff = 0;
-//   loadPixels();
-//   for (var y = 0; y < width; y++) {
-//     var xoff = 0;
-//     for (var x = 0; x < height; x++) {
-//       var index = (x + y * width) * 4;
-//       var r = noise(xoff, yoff)*255;
-//       pixels[index + 0] = r;
-//       pixels[index + 1] = r;
-//       pixels[index + 2] = r;
-//       pixels[index + 3] = 255;
-//       xoff += inc;
-//     }
-//     yoff += inc;
-//   }
-//   updatePixels();
-//   noLoop();
-// }
-// background(51);
-// stroke(255);
-// noFill();
-// beginShape();
-// var xoff = start;
-// for (var x = 0; x < width; x++) {
-//   stroke(255);
-//   //var y = random(height)
-//   var n = map(noise(xoff), 0, 1, -150, 150);
-//   var s = map(sin(xoff), -1, 1, 100, height-100);
-//   // var y = noise(xoff)*height/2
-//   var y = s + n;
-//   vertex(x, y)
-//   //point(x, noise(xoff)*height);
-//   xoff += inc;
-
-
-
-
-
-
-// var x = random(width);
-// var x = noise(xoff1)* width;
-// var y = noise(xoff2)* width;
-// xoff1 += 0.01;
-// xoff2 += 0.01;
-//
-// ellipse(x, y, 20, 20);

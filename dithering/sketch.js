@@ -9,7 +9,6 @@ function preload() {
 }
 function setup() {
   canvas = createCanvas(x_img*2, 512);
-  //canvas.parent('img');
   image(img2, 0, 0);
   img1.filter(GRAY);
   img2.filter(GRAY);

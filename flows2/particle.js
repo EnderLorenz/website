@@ -1,20 +1,9 @@
 function Particle(color, choice) {
-  // if (choice == 1) {
-  //   this.orig_x = random(1);
-  //   this.orig_y = random(height/2.01, height/1.99);
-  // }
-  // if (choice == 2) {
-  //   this.orig_x = random(width-1,width);
-  //   this.orig_y = random(height/2.01, height/1.99);
-  // }
+
   if (choice == 3) {
     this.orig_x = random(width/2.01, width/1.99);
     this.orig_y = random(height/2.01, height/1.99);
   }
-  // this.orig_x = random(width);
-  // this.orig_y = random(height);
-
-
   this.pos = createVector(this.orig_x, this.orig_y);
   this.vel = createVector(0, 0);
   this.acc = createVector(0, 0);

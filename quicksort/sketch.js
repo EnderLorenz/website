@@ -30,10 +30,6 @@ async function quickSort(arr, start, end) {
   await Promise.all([
     quickSort(arr, start, index - 1), 
     quickSort(arr, index + 1, end)]);
-
-  // await quickSort(arr, start, index - 1);
-  // await quickSort(arr, index + 1, end);
-
 }
 
 async function partition(arr, start, end) {
@@ -64,7 +60,7 @@ async function partition(arr, start, end) {
 }
 
 async function swap(arr, a, b) {
-  await sleep(20);
+  await sleep(25);
   let temp = arr[a];
   arr[a] = arr[b];
   arr[b] = temp;

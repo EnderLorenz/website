@@ -10,7 +10,6 @@ function setup() {
   }
   canvas = createCanvas(canvasSize, canvasSize);
   canvas.parent('img');
-  // canvas.position(0,0)
   console.log("here  ", canvas.y)
   background(175);
   tree = new Tree(); 
@@ -42,7 +41,7 @@ function greet() {
     fill(255, 0, 0);
     stroke(255, 0, 0);
     textSize(25);
-    // textAlign(CENTER);
+    textAlign(CENTER);
     text("Not an Integer", windowWidth/3, windowHeight);
   } else {
     background(175);

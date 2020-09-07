@@ -31,21 +31,12 @@ function Particle() {
   }
 
   this.show = function() {
-    // var x_c = map(this.pos.x, 0, width, -1, 1)
-    // var y_c = map(this.pos.y, 0, height, -1, 1)
-    // var v_c = Math.sqrt(this.vel.x*this.vel.x + this.vel.y*this.vel.y);
     var x_c = map(this.orig_x, 0, width, -1, 1)
     var y_c = map(this.orig_y, 0, height, -1, 1)
     var width_c = map(width, 0, width, -1, 1);
     var height_c = map(height, 0, height, -1, 1);
-    //var v_c = Math.sqrt(this.vel.x*this.vel.x + this.vel.y*this.vel.y);
-
-    // var v_c = map(Math.sqrt(this.vel.x*this.vel.x + this.vel.y*this.vel.y),
-    //               0, this.maxspeed, 0, 55)
     max_dist = Math.sqrt(width_c * width_c + height_c * height_c);
     var v_c = map(this.orig_distance, 0, max_dist, 0, 255);
-    // var v_c = map(Math.sqrt(this.vel.x*this.vel.x + this.vel.y*this.vel.y),
-    //               0, this.maxspeed, 0, 55)
     if(x_c >= 0) {
       var theta = Math.atan(y_c/x_c);
     }else {

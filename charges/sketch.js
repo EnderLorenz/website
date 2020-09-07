@@ -8,7 +8,7 @@ function setup() {
   } else {
     canvasSize = windowHeight
   }
-  canvas = createCanvas(canvasSize, canvasSize+150);
+  canvas = createCanvas(canvasSize-50, canvasSize+150);
   canvas.parent('img');
   
   for (var i = 0; i < 500; i++) {
@@ -28,7 +28,6 @@ function mousePressed() {
 }
 
 function draw() {
-  // background(51);
   stroke(0, 255, 150);
   strokeWeight(3);
   

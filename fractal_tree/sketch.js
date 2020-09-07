@@ -13,7 +13,6 @@ function setup() {
   }
   canvas = createCanvas(canvasSize, canvasSize+350);
   canvas.parent('img');
-  // console.log(width);
   slider1 = createCSlider(-TWO_PI*4, TWO_PI*4, 5*PI/16, .0001);
   slider2 = createCSlider(-TWO_PI*4, TWO_PI*4, -PI/16, .0001);
   slider3 = createCSlider(1, 17, 4, 1);

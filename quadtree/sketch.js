@@ -6,7 +6,7 @@ function setup() {
   } else {
     canvasSize = windowHeight
   }
-  canvas = createCanvas(canvasSize, canvasSize);
+  canvas = createCanvas(canvasSize-90, canvasSize-90);
   canvas.parent('img');
  let boundary = new Rectangle(0, 0, canvasSize, canvasSize)
  qtree = new QuadTree(boundary, 1);
