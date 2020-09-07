@@ -6,9 +6,7 @@ function setup() {
   } else {
     canvasSize = windowHeight
   }
-  canvas = createCanvas(canvasSize*.9, canvasSize*.9);
-  // canvas.position(20,100)
-  // centerCanvas();
+  canvas = createCanvas(canvasSize-50, canvasSize);
   canvas.parent('img');
   background(0);
   noLoop();
@@ -53,8 +51,6 @@ function draw() {
     y = nextY;
   }
 }
-
-
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
