@@ -1,6 +1,7 @@
 var tree;
 var clickTime;
 let input, button, button2;
+var greeting;
 
 function setup() {
   if (windowWidth < windowHeight) {
@@ -10,21 +11,18 @@ function setup() {
   }
   canvas = createCanvas(canvasSize, canvasSize);
   canvas.parent('img');
-  console.log("here  ", canvas.y)
   background(175);
   tree = new Tree(); 
   for (var i = 0; i < 15; i++) {
     tree.addValue(floor(random(0,1000)))
   }
   tree.traverse();
-  input = createInput();
+  // input = createInput();
+  input = createInput('').attribute('placeholder', 'Search for an integer');
   input.position(windowWidth/3, 100,);
   button = createButton('Search');
   button.position(input.x+input.width, input.y);
   button.mousePressed(greet);
-  button2 = createButton('Clear');
-  button2.position(input.x + input.width+button.width, input.y);
-  button2.mousePressed(clearSC);
 }
 
 function draw() {
@@ -34,33 +32,21 @@ function draw() {
 function greet() {
   var num = input.value();
   input.value('');
-  console.log(num, Number.isInteger(num), !Number.isInteger(num));
   if (!isInt(num)) {
     background(175);
     tree.traverse();
-    fill(255, 0, 0);
-    stroke(255, 0, 0);
-    textSize(25);
-    textAlign(CENTER);
-    text("Not an Integer", windowWidth/3, windowHeight);
+    input.attribute('placeholder', 'Not an integer');
   } else {
     background(175);
     tree.traverse();
     result = tree.search(num);
     if (result === null) {
-      fill(255, 0, 0);
-      stroke(255, 0, 0);
-      textSize(25);
-      textAlign(CENTER);
-      text("Not Found!!", input.x, input.y+input.height);
+      input.attribute('placeholder', 'Not found');
+    } else {
+      input.attribute('placeholder', 'Found!!');
     }
   }
   
-}
-
-function clearSC() {
-  background(175);
-  tree.traverse();
 }
 
 function isInt(value) {

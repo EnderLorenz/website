@@ -55,16 +55,13 @@ function Node(val, x, y, angle1, angle2, order) {
                 var ytop = m*xtop+b;
                 var xbottom = (xt+m*m*xt-sqrt((1+m*m)*r*r))/(1+m*m);
                 var ybottom = m*xbottom+b;
-                console.log("right",parent.right.value, this.value)
                 fill(255);
                 stroke(0);
-                console.log(m, r*r*(1+m*m)-4*yp*yp,xtop, ytop ,"this", parent.x, parent.y, this.x, this.y)
                 line(xtop, ytop, xbottom, ybottom);
             }
         }
         if(parent.left != null) {
             if (parent.left.value == this.value) {
-                console.log("left",parent.left.value, this.value)
                 fill(255);
                 stroke(0);
                 var m = (this.y-parent.y)/(this.x-parent.x);
