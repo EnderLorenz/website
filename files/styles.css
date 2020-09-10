@@ -61,6 +61,12 @@ body {
 	margin: 1em;
 }
 
+.profile__info {
+  margin-left: 5em;
+  text-align: left;
+  flex-basis: 70%;
+  width: 70%;
+}
 
 /*Responsive Styles*/
 @media (min-width: 700px) {

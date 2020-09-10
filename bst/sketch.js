@@ -4,12 +4,7 @@ let input, button, button2;
 var greeting;
 
 function setup() {
-  if (windowWidth < windowHeight) {
-    canvasSize = windowWidth
-  } else {
-    canvasSize = windowHeight
-  }
-  canvas = createCanvas(2*canvasSize, canvasSize);
+  canvas = createCanvas(2*windowWidth, windowHeight);
   canvas.parent('canvas');
   background(175);
   tree = new Tree(); 
@@ -19,7 +14,7 @@ function setup() {
   tree.traverse();
   // input = createInput();
   input = createInput('').attribute('placeholder', 'Search for an integer');
-  input.position(windowWidth/3, 100,);
+  input.position(windowWidth/2, 100,);
   button = createButton('Search');
   button.position(input.x+input.width, input.y);
   button.mousePressed(greet);

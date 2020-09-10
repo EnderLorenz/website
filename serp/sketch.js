@@ -40,6 +40,3 @@ function serpinskii(leftX, leftY, size, order, color) {
     }
 }
 
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
-}

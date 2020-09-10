@@ -21,7 +21,6 @@ function setup() {
   background(0);
   cols = floor(width / scl);
   rows = floor(height / scl);
-  fr = createP('');
   flowfield = new Array(cols * rows)
 
   for (var i = 0; i < 100; i++) {
