@@ -76,10 +76,10 @@ function startStop() {
   var button2 = createButton("Stop Sketch");
 
   button.mousePressed(startSketch);
-  button.position(windowWidth, height-250);
+  button.position(windowWidth-button.width-20, height-250);
 
   button2.mousePressed(stopSketch);
-  button2.position(windowWidth, height-200)
+  button2.position(windowWidth-button2.width-20, height-200)
 
   function stopSketch() {
     noLoop();
@@ -96,16 +96,16 @@ function round_2_str(num) {
 }
 
 
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
-  centerCanvas()
-}
+// function windowResized() {
+//   resizeCanvas(windowWidth, windowHeight);
+//   centerCanvas()
+// }
 
-function centerCanvas() {
-  var x = (windowWidth - width) / 2;
-  var y = (windowHeight - height) / 2;
-  canvas.position(x, y);
-}
+// function centerCanvas() {
+//   var x = (windowWidth - width) / 2;
+//   var y = (windowHeight - height) / 2;
+//   canvas.position(x, y);
+// }
 
 // ========== cslider.js ===========
 

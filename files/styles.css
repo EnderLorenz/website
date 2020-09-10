@@ -97,12 +97,28 @@ body {
     text-align: center;
   }
 
+  .gallerysCanvas{
+    padding: 20px;
+    /* overflow: hidden; */
+    text-align: center;
+  }
+
   .img{
     display: inline-block;
     width: 100%;
     max-width: 340px;
     height: 220px;
     overflow: hidden;
+    margin: 10px;
+    /* cursor: pointer; */
+  }
+
+  .canvas{
+    display: inline-block;
+    width: 100%;
+    /* max-width: 340px; */
+    /* height: 220px; */
+    /* overflow: visible; */
     margin: 10px;
     /* cursor: pointer; */
   }
@@ -122,6 +138,7 @@ body {
 .img script{
   width: auto;
   height: 190px;
+  over
 }
 
 .img p{
@@ -130,12 +147,6 @@ body {
   margin-top: auto;
   margin-left: 4em;
 }
-
-
-
-
-
-
 
 .img1{
   display: inline-block;
@@ -211,6 +222,9 @@ margin-left: 4em;
     .img {
       margin: 10px 0;
     }
+    .canvas {
+      margin: 10px 0;
+    }
     .text {
       margin-left: 1.5em;
     }
@@ -223,5 +237,15 @@ margin-left: 4em;
       text-align:left; 
       margin-left: 4em; 
     }
+/* 
+    .img{
+      display: inline-block;
+      width: 100%;
+      max-width: 340px;
+      height: 220px;
+      overflow: hidden;
+      margin: 10px;
+      /* cursor: pointer; */
+    } */
     
   }

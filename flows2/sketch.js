@@ -7,8 +7,8 @@ var flowfield;
 
 function setup() {
   frameRate(60);
-  canvas = createCanvas((windowWidth-90), (windowHeight));
-  canvas.parent('img');
+  canvas = createCanvas((2*windowWidth-90), (windowHeight));
+  canvas.parent('canvas');
 
   background(0);
   cols = floor(width / scl);
@@ -65,21 +65,6 @@ function random_normal_gen(mu, sigma) {
   for (i = 1; i < 24; i++) sum += random();
   sum -= 12.0;
   return (mu + (sigma * sum));
-}
-
-function save_record() {
-  capturer.save();
-}
-
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
-  centerCanvas()
-}
-
-function centerCanvas() {
-  var x = (windowWidth - width) / 2;
-  var y = (windowHeight - height) / 2;
-  canvas.position(x, y);
 }
 
 function getQuadrant(dy, dx) {

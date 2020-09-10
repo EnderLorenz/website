@@ -9,8 +9,8 @@ function setup() {
   } else {
     canvasSize = windowHeight
   }
-  canvas = createCanvas(canvasSize, canvasSize);
-  canvas.parent('img');
+  canvas = createCanvas(2*canvasSize, canvasSize);
+  canvas.parent('canvas');
   background(175);
   tree = new Tree(); 
   for (var i = 0; i < 15; i++) {
@@ -54,13 +54,13 @@ function isInt(value) {
 }
 
 
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
-  centerCanvas()
-}
+// function windowResized() {
+//   resizeCanvas(windowWidth, windowHeight);
+//   centerCanvas()
+// }
 
-function centerCanvas() {
-  var x = (windowWidth - width) / 2;
-  var y = (windowHeight - height) / 2;
-  canvas.position(x, y);
-}
+// function centerCanvas() {
+//   var x = (windowWidth - width) / 2;
+//   var y = (windowHeight - height) / 2;
+//   canvas.position(x, y);
+// }
