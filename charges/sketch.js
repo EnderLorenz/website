@@ -28,6 +28,7 @@ function mousePressed() {
 }
 
 function draw() {
+  background(51);
   stroke(0, 255, 150);
   strokeWeight(3);
   
