@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Muon Decay</title>
+  <link rel="stylesheet" href="../../files/text.css">
+  <meta charset="utf-8" />
+  <script src="../../files/p5.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../files/styles.css">
+  <head>
+    <div class="nav-wrapper">
+      <div class="left-side">
+          <div class="brand">
+              <div>CHRIS NEWEY</div>
+          </div>
+      </div>
+      <div class="right-side">
+          <div class="nav-link-wrapper">
+              <a href="../../index.html">Home</a>
+          </div>
+          <div class="nav-link-wrapper">
+            <a href="../index.html">Physics</a>
+          </div>
+          <div class="nav-link-wrapper">
+              <a href="../../files/about.html">About</a>
+          </div>
+      </div>
+    </div>
+  </head>
+  <body>
+    <div class = "text">
+      <p><h2>Muon Decay Data Analysis</h2></p>
+      <p><h4>Introduction</h4></p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On this page discusses how I plotted and analyzed
+          some data for a muon decay experiment.  I do not want to include the final 
+          lab report since it is a common excersise for lots of students.  
+          Originally, I did minimal work in Mathematica and have 
+          since greatly expanded the work in my personal time. Here are 
+          the <a href="muon.nb" target = 'blank'>notebook</a> and the 
+          <a href="muon.pdf" target = 'blank'>pdf</a> with results.
+          The <a href="sift.dat" target = 'blank'>sifted data</a>
+          was pasted into the notebook to make keep everything together but, the 
+          import and clean step shows how to import the data from a file.
+          The <a href="unsifted.dat" target = 'blank'>Unsifted data</a> file is only small part
+          of the original, which is over 10mb.  Finally, here are
+          <a href="muon.ipynb" target = 'blank'>Python</a>, 
+          <a href="gnumuontfit.txt" target = 'blank'>Gnuplot</a>,
+          <a href="matlab/" target = 'blank'>Matlab</a>, and 
+          <a href="muon_c/" target = 'blank'>C_code</a>
+          files I made as well.  The C code was mostly written by me outside of a few routines from 
+          when I took Comp Phys and a couple other cited sources.  Please be aware that they do not include any data but, they do have import statements.
+          Given all the different plotting routines and built in functions I used it is tough 
+          to say how well the other programs will work in gneral.  The Mathematica notebook is pretty robust and should be more than enough.  
+      </p>
+      <p><h4>Import and Clean Data</h4></p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Currently, the go to method for importing the raw data
+        in Mathematica is ReadList[].  ReadList[] is the fastest function for the raw data file which contains 
+        several extra time stamps in addition to the decay time recordings.  So, those values over 39999 are removed while importing. Additionally, the 
+        decay times are the first column and a date and time stamp for the second column. This is the difference between the sifted and unsifted data files.
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Now, Histogram and delete the first bin (both the height and location) and delete the added bin location (bin location over 20,000) to keep the set rectangular and Mathematica happy and able to perform
+        the next step. Why delete the first bin? This question is for the student to answer but, it has to do with the detector apparatus.
+        Then, transpose the histogram list and set equal a variable.  Histogram[] allows for the bin widths
+        to be set by the user.  Then, transpose the histogram list and set equal a variable for use with the NonLinearModelFit[] function.  
+        I did not remove the first bin from the histogram in the final plots, only for the numerical analysis.
+      </p>
+      <p><h4>Perform NLM Fit</h4></p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Embarassingly, this step took me awhile.  The main problem I had was that
+        I needed to provide a guess to NonlinearModelFit[] and I struggled with the Mathematica syntax and documentation.
+        Something to consider is that we are doing math, not physics, at this point so you could always
+        scale the independent variable so that the decay time is closer to one.  One is the default guess
+        for Mathematica which might not help you.
+      </p>
+      <p><h4>Plot and LSQ</h4></p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes, I got carried away with the plotting features.
+        While discussing the experiment with my professors they suggested least squares methods and there are
+        a couple options for fitting an exponential function weighted and unweighted.  In order to find the background, the average of several 
+        values from the tail end was used.  The residuals were plotted as were the distributions
+        for the error sizes for each fit.  I guess the more normal the better.  Checking whether or not the data 
+        is normally distributed can also be checked.  
+      </p>
+    </p><p><h4>Step 13</h4></p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Step 13: Take a fresh data sample of 2000 good decay events. For each successive group of 50 events, count
+        how many have a decay time less than 1 lifetime. Histogram the number of “successes.” This gives you
+        40 experiments to do.  I made a manipulate too which is kind of fun.  Is this the central limit theorem?
+      </p>
+    </p><p><h4>Conclusion</h4></p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I am sure nobody will read all of this but, in summation
+       I did too much work just to fit a curve to some data.  
+    </p>
+  </body>
+</html>
+

@@ -1,0 +1,40 @@
+binwidth=100
+bin(x,width)=width*floor(x/width)
+set table 'histo.dat'
+plot 'sift.dat' using (bin($1,binwidth)):(1.0) smooth freq with boxes
+unset table
+
+#go into file and delete the first bin
+plot 'histo.dat' u 1:2:(sqrt($2)) w yerr
+f(x) = A*exp(-x/tau)+C
+a=600;tau=2000; C=1
+#plot guess
+plot 'histo.dat' u 1:2:(sqrt($2)) w yerr, f(x)
+#Now calc w error
+fit f(x) 'histo.dat' using 1:2:(sqrt($2)) via a, tau, C
+plot 'histo.dat' u 1:2:(sqrt($2)) w yerr, f(x)
+#plot
+set style fill solid .50 border lt -1
+plot 'sift.dat' u (bin($1,binwidth)):(1.0) smooth freq w boxes notitle lt rgb "cyan", f(x) title "c + a exp[t/tau]" lt rgb "#FF00FF"
+
+set terminal epslatex size 8.5cm,7cm dashed dashlength
+set output 'gnutest.tex'
+set ylabel 'counts/bin'
+set xlabel "(nanoseconds)"
+set title "Muon Data and Fit" font "sans, 30"
+plot 'sift.dat' u (bin($1,binwidth)):(1.0) smooth freq w boxes notitle lt rgb "cyan", f(x) title "c + a exp[t/tau]" lt rgb "#FF00FF"
+set output
+
+Change the mytest.tex for counts/bin:  
+\put(100,1917){\rotatebox{0}{\makebox(0,0){\strut{}$\frac{counts}{bin}$}}}%
+
+Smaller ticks:
+  {\fontsize{8}{10}\selectfont %{\fontsize{10}{12}\selectfont Foo}%baselinekip 1.2 time size where you see Foo put code for the tick labels
+
+\begin{figure}[ht!]
+\begin{center}
+\resizebox{1.0\textwidth}{!}{\input{gnutest.tex}}
+\end{center}
+\caption {caption}
+\label{name}
+\end{figure}
