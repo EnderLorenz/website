@@ -85,7 +85,8 @@ body {
 	}
 
 	.profile__info {
-		margin-left: 5em;
+    margin-left: 5em;
+    margin-right: 15em;
 		text-align: left;
 		flex-basis: 70%;
 		width: 70%;
@@ -219,6 +220,7 @@ margin-left: 4em;
   .text {
     margin-top: 0em;
     margin-left: 4em;
+    margin-right: 4em;
   }
 
   .img img:hover{
