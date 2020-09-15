@@ -23,8 +23,8 @@ function setup() {
   canvas.parent('canvas');
   canvasSize = canvasSize - 10
   console.log(windowHeight, windowWidth)
-  if (windowWidth < 2000) {
-    var screenAdjust = 120;
+  if (windowWidth < 700) {
+    var screenAdjust = 110;
   } else var screenAdjust = 0;
   slider = createSlider(.1, 100, 10, .01);
   slider2 = createSlider(.1, 100, 10, .01);
@@ -43,9 +43,9 @@ function setup() {
   input3.parent('canvas');
   input4.parent('canvas');
   slider.position(windowWidth/2-canvasSize/2, windowHeight/2+canvasSize/2+4*slider.height-screenAdjust);
-  slider2.position(slider.x, slider.y+4*slider.height);
-  slider3.position(slider2.x, slider2.y+4*slider.height);
-  slider4.position(slider3.x, slider3.y+4*slider.height);
+  slider2.position(slider.x, slider.y+3*slider.height);
+  slider3.position(slider2.x, slider2.y+3*slider.height);
+  slider4.position(slider3.x, slider3.y+3*slider.height);
   input.position(slider.x+slider.width+5, slider.y);
   input2.position(slider2.x+slider2.width+5, slider2.y);
   input3.position(slider3.x+slider3.width+5, slider3.y);
