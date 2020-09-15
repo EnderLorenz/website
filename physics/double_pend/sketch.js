@@ -189,11 +189,11 @@ function draw() {
   y2 = y1 + r2_scale * cos(y[1]);
 
   line(width/2, height/2, x1, y1);
-  fill(0);
+  fill(77, 28, 28);
   ellipse(x1, y1, m1, m1);
 
   line(x1, y1, x2, y2);
-  fill(0);
+  fill(77, 28, 28);
   ellipse(x2, y2, m2, m2);
 
   if (bool) {
