@@ -17,12 +17,15 @@ var input, input2, input3;
 function setup() {
   if (windowWidth < windowHeight) {
     canvasSize = windowWidth
-  } else canvasSize = windowHeight
+  } else canvasSize = windowHeight;
   canvasSize = canvasSize - 90;
   canvas = createCanvas(canvasSize, canvasSize);
   canvas.parent('canvas');
   canvasSize = canvasSize - 10
-
+  console.log(windowHeight, windowWidth)
+  if (windowWidth < 2000) {
+    var screenAdjust = 120;
+  } else var screenAdjust = 0;
   slider = createSlider(.1, 100, 10, .01);
   slider2 = createSlider(.1, 100, 10, .01);
   slider3 = createSlider(.5, 100, 10, .01);
@@ -39,7 +42,7 @@ function setup() {
   input2.parent('canvas');
   input3.parent('canvas');
   input4.parent('canvas');
-  slider.position(windowWidth/2-canvasSize/2, windowHeight/2+canvasSize/2+4*slider.height);
+  slider.position(windowWidth/2-canvasSize/2, windowHeight/2+canvasSize/2+4*slider.height-screenAdjust);
   slider2.position(slider.x, slider.y+4*slider.height);
   slider3.position(slider2.x, slider2.y+4*slider.height);
   slider4.position(slider3.x, slider3.y+4*slider.height);
