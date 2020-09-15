@@ -210,8 +210,8 @@ function draw() {
         red   =  Math.sin(theta - 5*PI/4) * 127 + 128;
         green =  Math.sin(theta - 3*PI/4) * 127 + 128;
         blue =   Math.sin(theta -   PI/4) * 127 + 128;
-        alpha = map(y[2], -2, 2, 10, 100)
-        buffer.stroke(red, green, blue, alpha);
+        alpha = map(abs(y[3]), 0, 5, 0.001, .9)
+        buffer.stroke(red, green, blue, 1/alpha*10);
         buffer.line(px2, py2, x2, y2);
       }
       px2 = x2;
