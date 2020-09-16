@@ -25,8 +25,8 @@ function display() {
   var arctan = a*b*(nhits/ntrials);
   ctx.fillStyle = "rgb(185,156,107)"
   ctx.font = "30px Open Sans Condensed";
-  ctx.fillText("Atan(" + 8 + ") = " + arctan.toFixed(5), 10, 30);
-  ctx.fillText(ntrials + " Trials", cw-130, 30);
+  ctx.fillText("Atan(" + 8 + ") = " + arctan.toFixed(3), 10, 30);
+  ctx.fillText(ntrials + " Trials", cw-110, 30);
 
   x = 0;
   inc = .1;
@@ -74,21 +74,21 @@ function display() {
 
   ctx.moveTo(0, 0);
   ctx.beginPath();
-  ctx.rect(0, ch/2-50, cw, ch/2-230);
-  ctx.fillStyle = "#384048"
+  ctx.rect(0, ch/2-50, cw, 90);
+  ctx.fillStyle = "#384048";
   ctx.fill();
-  var arctan2 = total*(a/ntrials);
-  ctx.fillStyle = "rgb(185,156,107)"
-  ctx.font = "30px Open Sans Condensed";
-  ctx.fillText("Atan(" + 8 + ") = " + arctan2.toFixed(5), 10, ch/2 + 25);
-  ctx.fillText(ntrials + " Trials", cw-130, ch/2 + 25);
   ctx.beginPath();
-  ctx.rect(cw/5, ch/2+35, cw, ch/2 - 200);
-  ctx.fillStyle = "#384048"
+  ctx.rect(cw/5, ch/2, cw, 75);
+  ctx.fillStyle = "#384048";
   ctx.fill();
-  ctx.fillStyle = "rgb(185,156,107)"
+  ctx.fillStyle = "rgb(185,156,107)";
+  var arctan2 = total*(a/ntrials);
+  ctx.fillStyle = "rgb(185,156,107)";
   ctx.font = "30px Open Sans Condensed";
-  ctx.fillText("Actual = " + Math.atan(8).toFixed(5), cw-250, ch/2 + 60);
+  ctx.fillText("Atan(" + 8 + ") = " + arctan2.toFixed(3), 10, ch/2 + 25);
+  
+  ctx.font = "30px Open Sans Condensed";
+  ctx.fillText("Actual = " + Math.atan(8).toFixed(3), cw-150, ch/2 + 60);
 
 
 }
