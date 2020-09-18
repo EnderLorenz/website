@@ -1,5 +1,4 @@
 var tree;
-var clickTime;
 let input, input2, button, button2;
 
 function setup() {
@@ -25,9 +24,6 @@ function setup() {
   button3.position(button2.x+button2.width, input.y+input.height);
   button3.mousePressed(removeNode);
 }
-function draw() {
-
-}
 
 function search() {
   if (tree.root) {
@@ -38,6 +34,7 @@ function search() {
       tree.traverse();
       input.attribute('placeholder', 'Not an integer');
     } else {
+      num = parseFloat(num);
       background(175);
       tree.traverse();
       result = tree.search(num);
@@ -59,6 +56,7 @@ function add() {
     tree.traverse();
     input.attribute('placeholder', 'Not an integer');
   } else if (tree.root) {
+      num = parseFloat(num);
       tree.traverse();
       result = tree.quietSearch(num);
       if (result === null) {
@@ -70,6 +68,7 @@ function add() {
         input.attribute('placeholder', 'Not unique');
       }
   } else {
+    num = parseFloat(num);
     tree.addValue(num);
     input.attribute('placeholder', 'Added!!');
     tree.traverse();
@@ -85,6 +84,7 @@ function removeNode() {
     if (!isInt(num)) {
       input.attribute('placeholder', 'Not an integer');
     } else {
+      num = parseFloat(num);
       result = tree.quietSearch(num);
       if (result === null) {
         input.attribute('placeholder', 'Nothing Removed');
@@ -98,7 +98,6 @@ function removeNode() {
       }
     }
   } else input.attribute('placeholder', 'Make a tree');
-  
 }
 
 function isInt(value) {
