@@ -20,8 +20,7 @@ function Tree() {
   }  
   
   Tree.prototype.search = function(val) {
-    var found = this.root.search(val);
-    return found;
+    return this.root.search(val);;
   }
 
   Tree.prototype.traverse = async function(type) {
@@ -37,8 +36,7 @@ function Tree() {
   }
 
   Tree.prototype.drawSearch = function(val) {
-      var found = this.root.drawSearch(val);
-      return found;
+      return this.root.drawSearch(val);;
   }
 
   Tree.prototype.sleep = function(ms) {

@@ -201,7 +201,7 @@ function Node(val) {
         this.highlight([0, 0, 255]);
         stroke(0);
         fill(0);
-        text(this.value, width/6, count*25+40)
+        text(this.value, width/2-250, count*25+40)
         count ++;
     }
 

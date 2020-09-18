@@ -136,7 +136,7 @@ function preTraverseTree() {
   } else input.attribute('placeholder', 'Make a tree');
 }
 
-function inTraverseTree(type) {
+function inTraverseTree() {
   if (tree.root) {
       background(175);
       tree.drawTraverse();
