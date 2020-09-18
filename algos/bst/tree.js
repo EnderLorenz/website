@@ -30,7 +30,6 @@ function Tree() {
     }
   }
 
-  Tree.prototype.removeNode = function(data) {
-    if (this.root.value == data && this.root.left == null && this.root.right == null) this.root = null;
-    else this.root.removeNode(this.root, data)
+  Tree.prototype.remove = function(data) {
+      this.root = this.root.removeNode(this.root, data)
   }

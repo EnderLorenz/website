@@ -73,7 +73,6 @@ function Node(val) {
             }
             if(this.parent.left != null) {
                 if (this.parent.left.value == this.value) {
-                    // console.log("low left", this)
                     var m = (this.y-this.parent.y)/(this.x-this.parent.x);
                     var b = -m*this.parent.x+this.parent.y;
                     var r = 30;
@@ -147,92 +146,46 @@ function Node(val) {
         return null;
     }
 
-    Node.prototype.removeNode = function(parent, key) { 
-        if(this === null) return null;
+    Node.prototype.removeNode = function(node, key) { 
+        // console.log("remove", node, this)//this is the root
+        if(node === null) return null;
         
-        if (key < this.value && this.left != null) {
-            return this.left.removeNode(this, key);
-        } else if (key > this.value && this.right != null) {
-            return this.right.removeNode(this, key);
-        }
-
-        if (this.left === null && this.right === null) {
-            if (parent.value == key && this.value == key) {
-                parent = null;
-                return parent;
-            }
-            if (parent.left && parent.left.value == this.value) {
-                parent.left = null;
-                return parent;
-            } else {
-                parent.right = null;
-                return parent; 
-            }
-        } 
-
-        else if(this.left === null) {
-            if (parent.value == key && this.value == key) {
-                var tmp = this.right;
-                this.value = tmp.value;
-                this.right = tmp.right;
-                if (tmp.left) this.left = tmp.left;
-                tmp = null;
-                return this;
-            } else if (parent.left && parent.left.value == this.value) {
-                parent.left = this.right;
-                parent.left.parent = parent;
-                return parent;
-            } else {
-                parent.right = this.right; 
-                parent.right.parent = parent;
-                return parent;
-            }
-        } else if(this.right === null) { 
-            if (parent.value == key && this.value == key) {
-                var tmp = this.left;
-                this.value = tmp.value;
-                this.left = tmp.left;
-                if (tmp.right) this.right = tmp.right;
-                tmp = null;
-                return this;
-            } else if (parent.left && parent.left.value == this.value) {
-                parent.left = this.left; 
-                parent.left.parent = parent;
-                return parent;
-            } else {
-                parent.right = this.left; 
-                parent.right.parent = parent;
-                return parent;
-            }
+        if (key < node.value) {
+            node.left = this.removeNode(node.left, key);
+            return node;
+        } else if (key > node.value) {
+            node.right = this.removeNode(node.right, key);
+            return node;
         } else {
-            succParent = this.right.findMinNode(this);
-            if (succParent.value != key){
-                succ = succParent.left;
-                succParent.left = succ.right;
-                if (succ.right) {
-                    succ.right.parent = succ.parent; 
-                 } 
-                this.value = succ.value;
-                return parent;
-            } else {
-                succ = succParent.right;
-                this.value = succ.value;
-                if (succ.right) {
-                   this.right = succ.right;
-                   succ.right.parent = this; 
-                } else this.right = null;
-                return parent;
+
+            if (node.left === null && node.right === null) {
+            // console.log("no kids", this, node);
+            return null;
+            }
+        
+            if(node.left === null) {
+                // console.log("one right kid", this, node, node.right);
+                node.right.parent = node.parent;
+                return node.right;
+            }
+
+            if (node.right === null) {
+                // console.log("one left kid", this);
+                node.left.parent = node.parent;
+                return node.left;
+            }
+        
+            else {
+                // console.log("2 kids", node);
+                var successor = this.findMinNode(node.right);
+                node.value = successor.value;
+                node.right = this.removeNode(node.right, successor.value)
+                return node;
             }
         }
-  
-        
     } 
 
-    Node.prototype.findMinNode = function(parent) {  
-        if(this.left === null) {
-            return parent; 
-        } else {
-            return this.left.findMinNode(this); 
-        }
-            
-        } 
+    Node.prototype.findMinNode = function(node) {  
+        if (node.left === null) return node; 
+        else return this.findMinNode(node.left); 
+    } 

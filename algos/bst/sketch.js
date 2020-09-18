@@ -89,7 +89,7 @@ function removeNode() {
       if (result === null) {
         input.attribute('placeholder', 'Nothing Removed');
       } else {
-        tree.removeNode(num);
+        tree.remove(num);
         background(175);
         if (tree.root) {
           tree.traverse();
