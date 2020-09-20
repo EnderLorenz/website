@@ -65,6 +65,17 @@ function Node(val) {
         return null;
     }
 
+    Node.prototype.invertedSearch = function(val) {
+        if (this.value == val) {
+            return this;   
+        } else if (val > this.value && this.left != null) {
+            return this.left.invertedSearch(val);
+        } else if (val < this.value && this.right != null) {
+            return this.right.invertedSearch(val);
+        }
+        return null;
+    }
+
     Node.prototype.traverse = async function(type) {
         if (type === 'pre') {
             await this.sleep(1000);
@@ -105,6 +116,67 @@ function Node(val) {
             return await this.right.drawSearch(val);
         } return null;
     }
+
+    Node.prototype.invertedDrawSearch = async function(val) {
+        if (this.value == val) {
+            await this.sleep(500);
+            this.highlight(color(0, 255, 0))
+            return this;   
+        } else if (val > this.value && this.left != null) {
+            await this.sleep(500);
+            this.highlight(color(255, 0, 0))
+            return await this.left.invertedDrawSearch(val);
+        } else if (val < this.value && this.right != null) {
+            await this.sleep(500);
+            this.highlight(color(255, 0, 0))
+            return await this.right.invertedDrawSearch(val);
+        } return null;
+    }
+
+    Node.prototype.invertedAddNode = function(n) {
+        if (n.value > this.value) {
+            if (this.left == null) {
+                this.left = n;
+                this.left.parent = this;
+            } else this.left.invertedAddNode(n);
+        } else if (n.value < this.value){
+            if (this.right == null) {
+            this.right = n;
+            this.right.parent = this;
+            } else this.right.invertedAddNode(n);
+        }
+    }
+
+    Node.prototype.invertedRemoveNode = function(node, key) { 
+        if(node === null) return null;
+        if (key > node.value) {
+            node.left = this.invertedRemoveNode(node.left, key);
+            return node;
+        } else if (key < node.value) {
+            node.right = this.invertedRemoveNode(node.right, key);
+            return node;
+        } else {
+            if (node.left === null && node.right === null) {
+            return null;
+            } else if(node.left === null) {
+                node.right.parent = node.parent;
+                return node.right;
+            } else if (node.right === null) {
+                node.left.parent = node.parent;
+                return node.left;
+            } else {
+                var successor = this.findMaxNode(node.right);
+                node.value = successor.value;
+                node.right = this.invertedRemoveNode(node.right, successor.value)
+                return node;
+            }
+        }
+    } 
+
+    Node.prototype.findMaxNode = function(node) {  
+        if (node.left === null) return node; 
+        else return this.findMaxNode(node.left); 
+    } 
 
     Node.prototype.drawTraverse = function() {
         if (this.parent) {
@@ -201,7 +273,7 @@ function Node(val) {
         this.highlight([0, 0, 255]);
         stroke(0);
         fill(0);
-        text(this.value, width/2-250, count*25+40)
+        text(this.value, width/6, count*25+40)
         count ++;
     }
 

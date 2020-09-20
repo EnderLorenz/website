@@ -6,21 +6,25 @@ function Tree() {
     var n = new Node(val);
     if (this.root == null) {
       this.root = n;
+      this.inverted = false;
       this.root.order = 140;
       this.root.angle1 = -PI/2.3;
       this.root.angle2 = PI/2.3;
-      this.num = 0;
     } else {
-      this.root.addNode(n)
+      if (this.root.inverted) this.root.invertedAddNode(n);
+      else this.root.addNode(n)
     }
   }
 
   Tree.prototype.remove = function(data) {
-      this.root = this.root.removeNode(this.root, data)
+      if (this.root.inverted) this.root = this.root.invertedRemoveNode(this.root, data)
+      else this.root = this.root.removeNode(this.root, data)
   }  
   
   Tree.prototype.search = function(val) {
-    return this.root.search(val);;
+    if (this.root.inverted) var found = this.root.invertedSearch(val);
+    else var found = this.root.search(val);
+    return found;
   }
 
   Tree.prototype.traverse = async function(type) {
@@ -28,6 +32,10 @@ function Tree() {
   }
 
   Tree.prototype.invert = function() {
+    if(this.root.inverted) {
+      this.root.inverted = false;
+    } else this.root.inverted = true;
+    console.log(this.root.inverted)
     this.root.invert();
   }
     
@@ -36,7 +44,9 @@ function Tree() {
   }
 
   Tree.prototype.drawSearch = function(val) {
-      return this.root.drawSearch(val);;
+    if (this.root.inverted) var found = this.root.invertedDrawSearch(val);
+    else var found = this.root.drawSearch(val);
+      return found;
   }
 
   Tree.prototype.sleep = function(ms) {
