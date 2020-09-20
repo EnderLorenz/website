@@ -12,7 +12,7 @@ function setup() {
   }
   tree.drawTraverse();
   input = createInput('').attribute('placeholder', 'Positive Integers');
-  input.position(windowWidth-input.width-20, 100,);
+  input.position(windowWidth-input.width-40, 100,);
   button = createButton('Search');
   button.position(input.x, input.y+input.height);
   button.mousePressed(search);

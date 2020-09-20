@@ -35,7 +35,6 @@ function Tree() {
     if(this.root.inverted) {
       this.root.inverted = false;
     } else this.root.inverted = true;
-    console.log(this.root.inverted)
     this.root.invert();
   }
     
