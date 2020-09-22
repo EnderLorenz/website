@@ -6,14 +6,6 @@ function removeFromArray(arr, elt) {
   }
 }
 
-
-function preload() {
-  // table = loadTable('p081_small.csv', 'csv')
-  table = loadTable('p081_matrixSmaller.csv', 'csv')
-  // table = loadTable('p081_matrix.txt', 'csv')
-}
-
-
 var grid;
 var size = 11;
 var cols, rows;
@@ -34,10 +26,6 @@ var done = false;
 
 
 function setup() {
-  if (windowWidth < windowHeight) {
-    canvasSize = windowWidth
-  } else canvasSize = windowHeight
-
   canvas = createCanvas(windowWidth-87, windowWidth-87);
   canvas.parent('canvas');
   grid = new Array(size);
@@ -47,8 +35,7 @@ function setup() {
   }
   for (var i = 0; i < cols; i++) {
     for (var j = 0; j < rows; j++) {
-      var num = parseInt(table.getString(i,j));
-      grid[i][j] = new Cell(i, j, num)
+      grid[i][j] = new Cell(i, j, floor(random(10000)))
     }
   }
   for (var i = 0; i < cols; i++) {
@@ -139,17 +126,16 @@ function draw() {
     path[i].show(color(0, 0, 255));    
   }
   if (done) {
-    console.log("here");
     fill(255);
     stroke(255);
-    rect(width/2-75,height/2-25, 150, 50);
+    rect(width/2-75,height/2-75, 150, 50);
     for (var i = 0; i < path.length; i++) {
       total += path[i].cost
     }
     fill(0);
     stroke(0);
-    text("Minimum Path Cost", width/2, height/2-7)
-    text(total, width/2, height/2+7)
+    text("Minimum Path Cost", width/2, height/2-53)
+    text(total, width/2, height/2-40)
   }
   
 }

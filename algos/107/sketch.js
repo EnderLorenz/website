@@ -50,7 +50,7 @@ function draw() {
     mst.vertices.push(graph.edges[ind].to);
     mst.vertices.push(graph.edges[ind].from);
     cost += graph.edges[ind].cost;
-    mst.show(color(255,0,0, 10));
+    mst.show(color(255,0,0, 5));
   }
   if ((graph.edges[ind]) && graph.edges[ind].cost === Infinity) ind = graph.edges.length;
   if (ind > graph.edges.length+5 && (!bool)) {
