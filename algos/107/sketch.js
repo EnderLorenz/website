@@ -1,4 +1,4 @@
-var size = 50;
+var size = 75;
 var ind = 0;
 let cost = 0;
 let uf, mst;
@@ -8,7 +8,7 @@ function setup() {
   if (windowWidth < windowHeight) {
     canvasSize = windowWidth
   } else canvasSize = windowHeight
-  frameRate(5)
+  frameRate(20)
   canvas = createCanvas(400-87, 400-87);
   canvas.parent('canvas');
   graph = new Graph;
@@ -50,18 +50,18 @@ function draw() {
     mst.vertices.push(graph.edges[ind].to);
     mst.vertices.push(graph.edges[ind].from);
     cost += graph.edges[ind].cost;
-    mst.show(color(255,0,0));
+    mst.show(color(255,0,0, 10));
   }
   if ((graph.edges[ind]) && graph.edges[ind].cost === Infinity) ind = graph.edges.length;
-  if (ind >= graph.edges.length -1 && (!bool)) {
+  if (ind > graph.edges.length+5 && (!bool)) {
     stroke(0);
     fill(0);
     text("No spanning tree ", 10,10);
     ind++;
   }
 
-  if (ind >= graph.edges.length + 100) startOVer();
-  if (ind >= graph.vertices.length + 100 && bool) startOVer();
+  if (ind > graph.edges.length + 500) startOVer();
+  if (ind > graph.vertices.length + 500 && bool) startOVer();
   if(mst.edges.length >= graph.vertices.length-1){
     stroke(0);
     fill(0);
@@ -74,7 +74,7 @@ function draw() {
 
 function startOVer() {
   background(255)
-  ind = 0;
+  ind = -1;
   bool = false;
   graph = new Graph;
 
@@ -82,12 +82,12 @@ function startOVer() {
     tmp = new Vertex(i);
     graph.vertices.push(tmp)
   }
-
+  var exTest = random(1)
   for (var i = 0; i < size; i++) {
     for (var j = i+1; j < size; j++) {
       var test = random(1);
-      var exTest = random(1)
-      if (exTest > .1) {
+      
+      if (exTest > .25) {
         if (test < .5) {
                 tmp = new Edge(graph.vertices[i], graph.vertices[j], Infinity)
                 graph.edges.push(tmp)
@@ -96,7 +96,7 @@ function startOVer() {
                 graph.edges.push(tmp)
               }
       } else {
-          if (test < .99) {
+          if (test < .95) {
             tmp = new Edge(graph.vertices[i], graph.vertices[j], Infinity)
             graph.edges.push(tmp)
           } else {
