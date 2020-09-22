@@ -35,7 +35,7 @@ function setup() {
   }
   for (var i = 0; i < cols; i++) {
     for (var j = 0; j < rows; j++) {
-      grid[i][j] = new Cell(i, j, floor(random(10000)))
+      grid[i][j] = new Cell(i, j, floor(random(1000)))
     }
   }
   for (var i = 0; i < cols; i++) {
@@ -62,7 +62,6 @@ function draw() {
     var current = openSet[winner];
 
     if (current === end) {
-      console.log("Done!");
       noLoop();
       
       done = true;
