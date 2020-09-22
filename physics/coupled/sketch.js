@@ -46,8 +46,7 @@ function drawSpring(x1, y1, x2, y2, windings, width, offset, col1, col2, lineWid
           yy += Math.sin(j * Math.PI * 2) * nx * width;
           if(j === 0.25){
               ctx.moveTo(xx,yy);
-          
-          }else{
+          } else{
               ctx.lineTo(xx,yy);
           }
       }

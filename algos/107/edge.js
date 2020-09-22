@@ -4,7 +4,9 @@ function Edge(to, from, cost) {
     this.cost = cost;
 
     this.show = function(color) {
-      stroke(color);
+      if (this.cost < Number.MAX_VALUE) {
+        stroke(color);
       line(this.from.x, this.from.y, this.to.x, this.to.y)
+      }
     }
 }
