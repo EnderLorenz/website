@@ -12,13 +12,13 @@ function Kruskal() {
         if (ind > graph.edges.length && (!bool)) {
           stroke(0);
           fill(0);
-          text("No spanning tree ", 10,10);
+          text("No spanning tree ", width/2-50, 50);
         } 
         if(mst.edges.length == graph.vertices.length-1 && !bool){
           stroke(0);
           fill(0);
           bool = true;
-          text("Minimum Spanning Tree Cost = " + cost.toFixed(2), width/2, 50);
+          text("Minimum Spanning Tree Cost = " + cost.toFixed(2), width/2-50, 50);
           ind = graph.edges.length;
         }
         if (ind > graph.edges.length + 5) {
