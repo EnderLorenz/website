@@ -84,7 +84,7 @@ function sparcityButton() {
   num = input2.value();
   input2.value('');
   if (num >= 0 && num <= 100) {
-    input2.attribute('placeholder', num);
+    input2.attribute('placeholder', num + '%');
     sparcity = num*.01;
     st = new Start;
     st.start();  
