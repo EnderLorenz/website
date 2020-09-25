@@ -1,119 +1,120 @@
-var size = 75;
+var size, sparcit;
 var ind = 0;
 let cost = 0;
-let uf, mst;
-let bool = false;
+let graph, uf, mst, visited, visited2, s, q, edges, depthGraph;
+let input, input2, button, button2, button3, button4, button5, button6, button7;
+let kruskalBoolean, dfsBoolean, bfsBoolean;;
 
 function setup() {
   if (windowWidth < windowHeight) {
     canvasSize = windowWidth
   } else canvasSize = windowHeight
-  frameRate(20)
-  canvas = createCanvas(400-87, 400-87);
+  frameRate(1)
+  canvas = createCanvas(windowWidth-87, windowWidth-87);
   canvas.parent('canvas');
-  graph = new Graph;
-
-  for (var i = 0; i < size; i++) {
-    tmp = new Vertex(i);
-    graph.vertices.push(tmp)
-  }
-
-  for (var i = 0; i < size; i++) {
-    for (var j = i+1; j < size; j++) {
-      var test = random(1);
-      if (test < .5) {
-        tmp = new Edge(graph.vertices[i], graph.vertices[j], Infinity)
-        graph.edges.push(tmp)
-      } else {
-        tmp = new Edge(graph.vertices[i], graph.vertices[j], random(1,1000))
-        graph.edges.push(tmp)
-      }
-    }
-  }
   
-  graph.edges.sort( function( a , b){
-    if(a.cost > b.cost) return 1;
-    if(a.cost < b.cost) return -1;
-    return 0;
-  });
-  graph.show(color(79, 100))
-  uf = new UnionFind(graph.vertices.length)
-  mst = new Graph;
+  input = createInput('').attribute('placeholder', 'Integer 0 - 100');
+  input.parent('canvas')
+  input.position(20, 180);
+  input.size(90)
+  button = createButton('Number of Nodes');
+  button.parent('canvas')
+  button.position(input.x+98, input.y);
+  button.mousePressed(nodesButton);
+
+  input2 = createInput('').attribute('placeholder', '0 - 100%');
+  input2.parent('canvas')
+  input2.position(input.x, input.y+input.height);
+  input2.size(90)
+  button2 = createButton('Sparcity');
+  button2.parent('canvas')
+  button2.position(input2.x+input2.width, input2.y);
+  button2.mousePressed(sparcityButton);
+
+  button3 = createButton('Kruskal\'s Algorithm');
+  button3.parent('canvas')
+  button3.position(input2.x, input2.y+input2.height);
+  button3.mousePressed(kButton);
+
+  button4 = createButton('Depth First Search');
+  button4.parent('canvas')
+  button4.position(input.x, button3.y+button3.height);
+  button4.mousePressed(dfsButton);
+
+  button5 = createButton('Breadth First Search');
+  button5.parent('canvas')
+  button5.position(input.x, button4.y+button4.height);
+  button5.mousePressed(bfsButton);
+
+  
+
+  size = 5;
+  sparcity = .5;
+  st = new Start
+  st.start();
 }
 
 function draw() {
-  if (graph.edges[ind]
-    && (!uf.connected(graph.edges[ind].to.index, graph.edges[ind].from.index) 
-    && (graph.edges[ind].cost < Infinity))) {
-    uf.union(graph.edges[ind].to.index, graph.edges[ind].from.index);
-    mst.edges.push(graph.edges[ind]);
-    mst.vertices.push(graph.edges[ind].to);
-    mst.vertices.push(graph.edges[ind].from);
-    cost += graph.edges[ind].cost;
-    mst.show(color(255,0,0, 5));
+  if (bfsBoolean) {
+    b = new Bfs;
+    b.bfsOpen();
   }
-  if ((graph.edges[ind]) && graph.edges[ind].cost === Infinity) ind = graph.edges.length;
-  if (ind > graph.edges.length+5 && (!bool)) {
-    stroke(0);
-    fill(0);
-    text("No spanning tree ", 10,10);
-    ind++;
+  if (dfsBoolean) {
+    d = new Dfs;
+    d.dfsOpen()
   }
-
-  if (ind > graph.edges.length + 500) startOVer();
-  if (ind > graph.vertices.length + 500 && bool) startOVer();
-  if(mst.edges.length >= graph.vertices.length-1){
-    stroke(0);
-    fill(0);
-    bool = true;
-    text("Minimum Spanning Tree Cost = " + cost.toFixed(2), 10,10);
-    ind++;
+  if (kruskalBoolean) {
+    k = new Kruskal;
+    k.kruskalOpen() 
   }
-  ind++;
 }
 
-function startOVer() {
-  background(255)
-  ind = -1;
-  bool = false;
-  graph = new Graph;
+function nodesButton() {
+  num = input.value();
+  input.value('');
+  if (num > 0 && num < 101 && isInt(num)) {
+    input.attribute('placeholder', num);
+    size = num;
+    st = new Start;
+    st.start();  
+  } else input.attribute('placeholder', 'Integer 0 - 100');
+}
 
-  for (var i = 0; i < size; i++) {
-    tmp = new Vertex(i);
-    graph.vertices.push(tmp)
-  }
-  var exTest = random(1)
-  for (var i = 0; i < size; i++) {
-    for (var j = i+1; j < size; j++) {
-      var test = random(1);
-      
-      if (exTest > .25) {
-        if (test < .5) {
-                tmp = new Edge(graph.vertices[i], graph.vertices[j], Infinity)
-                graph.edges.push(tmp)
-              } else {
-                tmp = new Edge(graph.vertices[i], graph.vertices[j], random(1,1000))
-                graph.edges.push(tmp)
-              }
-      } else {
-          if (test < .95) {
-            tmp = new Edge(graph.vertices[i], graph.vertices[j], Infinity)
-            graph.edges.push(tmp)
-          } else {
-            tmp = new Edge(graph.vertices[i], graph.vertices[j], random(1,1000))
-            graph.edges.push(tmp)
-          }
-      }
-      
-    }
-  }
-  
-  graph.edges.sort( function( a , b){
-    if(a.cost > b.cost) return 1;
-    if(a.cost < b.cost) return -1;
-    return 0;
-  });
-  graph.show(color(79, 100))
-  uf = new UnionFind(graph.vertices.length)
-  mst = new Graph;
+function sparcityButton() {
+  num = input2.value();
+  input2.value('');
+  if (num > 0 && num <= 100) {
+    input2.attribute('placeholder', num);
+    sparcity = num*.01;
+    st = new Start;
+    st.start();  
+  } else input2.attribute('placeholder', '0 - 100%');
+}
+
+function kButton() {
+  kruskalBoolean = true;
+  dfsBoolean = false;
+  bfsBoolean = false;
+  st = new Start;
+  st.start();
+}
+
+function dfsButton() {
+  dfsBoolean = true;
+  bfsBoolean = false;
+  kruskalBoolean = false;
+  st = new Start;
+  st.start();
+}
+
+function bfsButton() {
+  bfsBoolean = true;
+  dfsBoolean = false;
+  kruskalBoolean = false;
+  st = new Start;
+  st.start();
+}
+
+function isInt(value) {
+  return !isNaN(value) && (function(x) { return (x | 0) === x; })(parseFloat(value))
 }

@@ -3,10 +3,11 @@ function Graph() {
     this.edges = [];
 
 
-    this.show = function(col) {
-        for (var i = 0; i < this.vertices.length; i++)
-            this.vertices[i].show(color(80, 80, 174))
+    this.show = function(colEdges, colVert) {
         for (var i = 0; i < this.edges.length; i++)
-            this.edges[i].show(col)
-    }
+            if (this.edges[i] != 0)
+            this.edges[i].show(colEdges)
+        for (var i = 0; i < this.vertices.length; i++)
+            this.vertices[i].show(colVert)
+    };
 }
