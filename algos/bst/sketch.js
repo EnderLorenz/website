@@ -3,9 +3,11 @@ let input, input2, button, button2, button3, button4, button5, button6, button7;
 
 
 function setup() {
-  canvas = createCanvas(2*windowWidth, windowHeight);
+  console.log(windowWidth, windowHeight)
+  if (windowWidth < 800) canvas = createCanvas(2*windowWidth, windowHeight);
+  else canvas = createCanvas(1.25*windowWidth, windowHeight);
   canvas.parent('canvas');
-  background(175);
+  background(255);
   tree = new Tree(); 
   for (var i = 0; i < 15; i++) {
     tree.addValue(floor(random(0,1000)))
@@ -47,12 +49,12 @@ function search() {
     var num = input.value();
     input.value('');
     if (!isInt(num)) {
-      background(175);
+      background(255);
       tree.drawTraverse();
       input.attribute('placeholder', 'Not an integer');
     } else {
       num = parseFloat(num);
-      background(175);
+      background(255);
       tree.drawTraverse();
       result = tree.drawSearch(num);
       if (result === null) {
@@ -66,7 +68,7 @@ function search() {
 }
 
 function add() {
-  background(175);
+  background(255);
   var num = input.value();
   input.value('');
   if (!isInt(num)) {
@@ -78,7 +80,7 @@ function add() {
       result = tree.search(num);
       if (result === null) {
         tree.addValue(num);
-        background(175);
+        background(255);
         tree.drawTraverse();
         input.attribute('placeholder', 'Added!!');
       } else {
@@ -93,7 +95,7 @@ function add() {
 }
 
 function removeNode() {
-  background(175);
+  background(255);
   if (tree.root) {
     tree.drawTraverse();
     var num = input.value();
@@ -107,7 +109,7 @@ function removeNode() {
         input.attribute('placeholder', 'Nothing Removed');
       } else {
         tree.remove(num);
-        background(175);
+        background(255);
         if (tree.root) {
           tree.drawTraverse();
         input.attribute('placeholder', 'Removed');
@@ -119,7 +121,7 @@ function removeNode() {
 
 function invertTree() {
   if (tree.root) {
-      background(175);
+      background(255);
       tree.invert();
       tree.drawTraverse();
       input.attribute('placeholder', 'Inverted!!');
@@ -128,7 +130,7 @@ function invertTree() {
 
 function preTraverseTree() {
   if (tree.root) {
-      background(175);
+      background(255);
       tree.drawTraverse();
       count = 0;
       tree.traverse('pre')
@@ -138,7 +140,7 @@ function preTraverseTree() {
 
 function inTraverseTree(type) {
   if (tree.root) {
-      background(175);
+      background(255);
       tree.drawTraverse();
       count = 0;
       tree.traverse('in')
@@ -148,7 +150,7 @@ function inTraverseTree(type) {
 
 function postTraverseTree() {
   if (tree.root) {
-      background(175);
+      background(255);
       tree.drawTraverse();
       count = 0;
       tree.traverse('post')

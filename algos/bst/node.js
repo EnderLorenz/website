@@ -104,15 +104,15 @@ function Node(val) {
     Node.prototype.drawSearch = async function(val) {
         if (this.value == val) {
             await this.sleep(500);
-            this.highlight(color(0, 255, 0))
+            this.highlight(color(57, 86, 72))
             return this;   
         } else if (val < this.value && this.left != null) {
             await this.sleep(500);
-            this.highlight(color(255, 0, 0))
+            this.highlight(color(194, 79, 62))
             return await this.left.drawSearch(val);
         } else if (val > this.value && this.right != null) {
             await this.sleep(500);
-            this.highlight(color(255, 0, 0))
+            this.highlight(color(194, 79, 62))
             return await this.right.drawSearch(val);
         } return null;
     }
@@ -120,15 +120,15 @@ function Node(val) {
     Node.prototype.invertedDrawSearch = async function(val) {
         if (this.value == val) {
             await this.sleep(500);
-            this.highlight(color(0, 255, 0))
+            this.highlight(color(57, 86, 72))
             return this;   
         } else if (val > this.value && this.left != null) {
             await this.sleep(500);
-            this.highlight(color(255, 0, 0))
+            this.highlight(color(194, 79, 62))
             return await this.left.invertedDrawSearch(val);
         } else if (val < this.value && this.right != null) {
             await this.sleep(500);
-            this.highlight(color(255, 0, 0))
+            this.highlight(color(194, 79, 62))
             return await this.right.invertedDrawSearch(val);
         } return null;
     }
@@ -206,18 +206,16 @@ function Node(val) {
         var ytop = m*xtop+b;
         var xbottom = (xt+m*m*xt-sqrt((1+m*m)*r*r))/(1+m*m);
         var ybottom = m*xbottom+b;
-        fill(255);
         stroke(0);
         line(xtop, ytop, xbottom, ybottom);
-        stroke(55,45,60);
-        fill(75,55,60,65)
+        stroke(0);
+        fill(150,200)
         ellipse(this.x, this.y, 60)
-        stroke(255);
-        fill(255);
+        noStroke();
+        fill(116, 86, 61);
         textSize(20);
         textAlign(CENTER);
         text(this.value, this.x, this.y);
-        textSize(20);
     }
 
     Node.prototype.drawLeft = function() {
@@ -234,44 +232,40 @@ function Node(val) {
         var ytop = m*xtop+b;
         var xbottom = (xt+m*m*xt+sqrt((1+m*m)*r*r))/(1+m*m);
         var ybottom = m*xbottom+b;
-        fill(255);
         stroke(0); 
         line(xtop, ytop, xbottom, ybottom);
-        stroke(55,45,60);
-        fill(75,55,60,65)
+        stroke(0);
+        fill(150, 200)
         ellipse(this.x, this.y, 60)
-        stroke(255);
-        fill(255);
+        noStroke();
+        fill(116, 86, 61);
         textSize(20);
         textAlign(CENTER);
         text(this.value, this.x, this.y);
-        textSize(20);
     }
 
     Node.prototype.drawRoot = function() {
         this.x = width/2;
         this.y = 70;
-        stroke(55,45,60);
-        fill(75,55,60,65)
+        stroke(0);
+        fill(150, 200)
         ellipse(this.x, this.y, 60)
-        stroke(255);
-        fill(255);
-        textSize(25);
+        noStroke();
+        fill(116, 86, 61);
         textAlign(CENTER);
         textSize(20);
         text(this.value, this.x, this.y);
     }
 
     Node.prototype.highlight = async function(color) {
-        stroke(color);
         fill(color);
         textAlign(CENTER);
+        textSize(20);
         text(this.value, this.x, this.y);
     }
 
     Node.prototype.list = async function() {
-        this.highlight([0, 0, 255]);
-        stroke(0);
+        this.highlight([70, 73, 96]);
         fill(0);
         text(this.value, width/6, count*25+40)
         count ++;

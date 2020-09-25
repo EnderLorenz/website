@@ -105,10 +105,10 @@ function draw() {
   }
 
   for (var i = 0; i < closedSet.length; i++) {
-    closedSet[i].show(color(255, 0, 0))
+    closedSet[i].show(color(129, 62, 69))
   }
   for (var i = 0; i < openSet.length; i++) {
-    openSet[i].show(color(0, 255, 0))
+    openSet[i].show(color(46, 81, 105))
   }
 
   //find the path
@@ -122,7 +122,7 @@ function draw() {
     }
 
   for (var i = 0; i < path.length; i++) {
-    path[i].show(color(0, 0, 255));    
+    path[i].show(color(57, 86, 72));    
   }
   if (done) {
     fill(255);
