@@ -13,25 +13,15 @@ function Start() {
           visited2.push(false);
           graph.vertices.push(tmp)
         }
-        // var exTest = random(1)
         for (var i = 0; i < size; i++) {
           for (var j = i+1; j < size; j++) {
             var test = random(1);
-            // if (exTest > .25) {
-              if (test < sparcity) {
+              if (test > sparcity) {
                 tmp = new Edge(graph.vertices[i], graph.vertices[j], random(1,1000))
                 graph.edges.push(tmp)
                 graph.vertices[i].adjacentNodes.push(graph.vertices[j])
                 graph.vertices[j].adjacentNodes.push(graph.vertices[i])
               }
-            // } else {
-                // if (test < .1) {
-                //   tmp = new Edge(graph.vertices[i], graph.vertices[j], random(1,1000))
-                //   graph.edges.push(tmp)
-                //   graph.vertices[i].adjacentNodes.push(graph.vertices[j])
-                //   graph.vertices[j].adjacentNodes.push(graph.vertices[i])
-                // }
-            // }
           }
         }
         

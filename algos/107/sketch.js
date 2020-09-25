@@ -1,8 +1,8 @@
-var size, sparcit;
+var size, sparcity;
 var ind = 0;
 let cost = 0;
 let graph, uf, mst, visited, visited2, s, q, edges, depthGraph;
-let input, input2, button, button2, button3, button4, button5, button6, button7;
+let input, input2, button, button2, button3, button4, button5;
 let kruskalBoolean, dfsBoolean, bfsBoolean;;
 
 function setup() {
@@ -10,12 +10,12 @@ function setup() {
     canvasSize = windowWidth
   } else canvasSize = windowHeight
   frameRate(1)
-  canvas = createCanvas(windowWidth-87, windowWidth-87);
+  canvas = createCanvas(canvasSize-87, canvasSize-87);
   canvas.parent('canvas');
   
   input = createInput('').attribute('placeholder', 'Integer 0 - 100');
   input.parent('canvas')
-  input.position(20, 180);
+  input.position(20, 181);
   input.size(90)
   button = createButton('Number of Nodes');
   button.parent('canvas')
@@ -83,7 +83,7 @@ function nodesButton() {
 function sparcityButton() {
   num = input2.value();
   input2.value('');
-  if (num > 0 && num <= 100) {
+  if (num >= 0 && num <= 100) {
     input2.attribute('placeholder', num);
     sparcity = num*.01;
     st = new Start;
