@@ -7,7 +7,7 @@ function Kruskal() {
           mst.vertices.push(graph.edges[ind].to);
           mst.vertices.push(graph.edges[ind].from);
           cost += graph.edges[ind].cost;
-          mst.show(color(255,0,0, 10), color(155,0,0));
+          mst.show(color(255,0,0, 20), color(155,0,0));
         }
         if (ind > graph.edges.length && (!bool)) {
           stroke(0);
