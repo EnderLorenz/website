@@ -18,7 +18,7 @@ function Kruskal() {
           stroke(0);
           fill(0);
           bool = true;
-          text("Minimum Spanning Tree Cost = " + cost.toFixed(2), width/2-70, 40);
+          text("Minimum Spanning Tree Cost = " + cost.toFixed(2), width/2-90, 30);
           ind = graph.edges.length;
         }
         if (ind > graph.edges.length + 5) {
