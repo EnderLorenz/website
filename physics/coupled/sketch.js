@@ -278,7 +278,7 @@ let xinc = xstop;
 let graphing = false;
 let inc = 0;
 maxX = 10;
-maxY = y[2];
+maxY = 1.5//y[2];
 minX = 0;
 minY = y[0];
 
