@@ -39,7 +39,6 @@ function Dfs() {
                 }      
             }  
         }
-        console.log(max)
         return max; 
     };
 }

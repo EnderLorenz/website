@@ -1,6 +1,6 @@
-function Edge(to, from, cost) {
-    this.to = to;
+function Edge(from, to, cost) {
     this.from = from;
+    this.to = to;
     this.cost = cost;
 
     this.show = function(color) {

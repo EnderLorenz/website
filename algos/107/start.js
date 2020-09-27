@@ -3,10 +3,10 @@ function Start() {
         background(255)
         ind = -1;
         bool = false;
+        graph = null
         graph = new Graph;
         visited = [];
         visited2 = [];
-      
         for (var i = 0; i < size; i++) {
           tmp = new Vertex(i);
           visited.push(false);
@@ -17,9 +17,12 @@ function Start() {
           for (var j = i+1; j < size; j++) {
             var test = random(1);
               if (test > sparcity) {
-                tmp = new Edge(graph.vertices[i], graph.vertices[j], random(1,1000))
+                var c = random(1,1000);
+                tmp = new Edge(graph.vertices[i], graph.vertices[j], c)
                 graph.edges.push(tmp)
+                graph.vertices[i].adjacentNodesCost.push(c)
                 graph.vertices[i].adjacentNodes.push(graph.vertices[j])
+                graph.vertices[j].adjacentNodesCost.push(c)
                 graph.vertices[j].adjacentNodes.push(graph.vertices[i])
               }
           }
@@ -40,6 +43,20 @@ function Start() {
         s.push(graph.vertices[0])
         q.enqueue(graph.vertices[0])
         visited[0] = true;
+
+        openSet = [];
+        closedSet = [];
+        total = 0;
+        done = false;
+        extraDone = false;
+
+        current = graph.vertices[0];
+        start = graph.vertices[0];
+        end = graph.vertices[graph.vertices.length-1];
+        openSet.push(start);
+        openS = null;
+        closedS = null;
+        pathS = null;
+
       }
-    
 }

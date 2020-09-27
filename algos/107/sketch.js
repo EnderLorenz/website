@@ -3,16 +3,24 @@ var ind = 0;
 let cost = 0;
 let graph, uf, mst, visited, visited2, s, q, edges, depthGraph;
 let input, input2, button, button2, button3, button4, button5;
-let kruskalBoolean, dfsBoolean, bfsBoolean;;
+let kruskalBoolean, dfsBoolean, bfsBoolean, dijkstraBoolean;
+
+// var openSet;
+// var closedSet;
+// var total;
+var done, extraDone, superDone;
+
+
 
 function setup() {
   if (windowWidth < windowHeight) {
     canvasSize = windowWidth
   } else canvasSize = windowHeight
   frameRate(1)
-  canvas = createCanvas(canvasSize-87, canvasSize-87);
-  canvas.parent('canvas');
+  if (windowWidth > 700) canvas = createCanvas(canvasSize-87, canvasSize-257);
+  else canvas = createCanvas(canvasSize-87, canvasSize);
   
+  canvas.parent('canvas');
   input = createInput('').attribute('placeholder', 'Integer 0 - 100');
   input.parent('canvas')
   input.position(20, 181);
@@ -46,13 +54,18 @@ function setup() {
   button5.position(input.x, button4.y+button4.height);
   button5.mousePressed(bfsButton);
 
-  
+  button6 = createButton('Dijkstra');
+  button6.parent('canvas')
+  button6.position(input.x, button5.y+button5.height);
+  button6.mousePressed(dijkstraButton);
 
   size = 5;
-  sparcity = .5;
+  sparcity = .25;
   st = new Start
   st.start();
 }
+
+
 
 function draw() {
   if (bfsBoolean) {
@@ -67,6 +80,12 @@ function draw() {
     k = new Kruskal;
     k.kruskalOpen() 
   }
+
+  if (dijkstraBoolean) {
+    d = new Dijktra;
+    d.dijktraOpen() 
+  }
+
 }
 
 function nodesButton() {
@@ -95,6 +114,7 @@ function kButton() {
   kruskalBoolean = true;
   dfsBoolean = false;
   bfsBoolean = false;
+  dijkstraBoolean = false;
   st = new Start;
   st.start();
 }
@@ -103,12 +123,23 @@ function dfsButton() {
   dfsBoolean = true;
   bfsBoolean = false;
   kruskalBoolean = false;
+  dijkstraBoolean = false;
   st = new Start;
   st.start();
 }
 
 function bfsButton() {
   bfsBoolean = true;
+  dfsBoolean = false;
+  kruskalBoolean = false;
+  dijkstraBoolean = false;
+  st = new Start;
+  st.start();
+}
+
+function dijkstraButton() {
+  dijkstraBoolean = true;
+  bfsBoolean = false;
   dfsBoolean = false;
   kruskalBoolean = false;
   st = new Start;
