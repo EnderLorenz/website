@@ -3,7 +3,6 @@ let input, input2, button, button2, button3, button4, button5, button6, button7;
 
 
 function setup() {
-  console.log(windowWidth, windowHeight)
   if (windowWidth < 800) canvas = createCanvas(2*windowWidth, windowHeight);
   else canvas = createCanvas(1.25*windowWidth, windowHeight);
   canvas.parent('canvas');

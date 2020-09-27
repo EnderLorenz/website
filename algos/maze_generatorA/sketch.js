@@ -88,7 +88,6 @@ function draw() {
     }
     if(current.i == 0 && current.j == 0){
       drawn = true;
-      console.log(grid)
     }
   }//end maze creation
 
@@ -106,7 +105,6 @@ function draw() {
 
     if (currentA === end) {
       noLoop();
-      console.log("Done!");
     }
 
     removeFromArray(openSet, currentA)
@@ -137,7 +135,6 @@ function draw() {
     }
 
   } else {
-    console.log('no soln')
     noLoop();
     return;
   }

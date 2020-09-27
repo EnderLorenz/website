@@ -4,7 +4,6 @@ function Bfs() {
         if (!bool) {
             var d = new Dfs;
             max = d.dfsClosed();
-            console.log(max)
             bool = true;
         }
         if (!q.isEmpty()) {
@@ -43,7 +42,6 @@ function Bfs() {
         if (!bool) {
             var d = new Dfs;
             max = d.dfsClosed();
-            console.log(max)
             bool = true;
         }
         while (!q.isEmpty()) {

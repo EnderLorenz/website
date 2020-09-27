@@ -131,14 +131,9 @@ var total = 0;
       if (canvas === undefined) {
           canvas = createCanvas();
       }
-      // if ( innerWidth < innerHeight ) {
         canvas.width = innerWidth - 50;
-        // canvas.height = innerWidth - 50;
-      // } else {
-        // canvas.width = innerHeight-50;
         canvas.height = innerHeight-50;
-      // }
-      console.log(innerHeight)
+
       cw = (canvas.width);
       ch = (canvas.height);
       ctx = canvas.getContext("2d");
