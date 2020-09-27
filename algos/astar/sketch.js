@@ -18,7 +18,7 @@ function setup() {
   button.parent('img')
   button.position(50, 205);
   button.mousePressed(aStarPressed);
-  button2 = createButton('Djkstra');
+  button2 = createButton('Dijkstra');
   button2.parent('img')
   button2.position(button.x+button.width, 205);
   button2.mousePressed(aStarPressed);
