@@ -4,10 +4,6 @@ let cost = 0;
 let graph, uf, mst, visited, visited2, s, q, edges, depthGraph;
 let input, input2, button, button2, button3, button4, button5;
 let kruskalBoolean, dfsBoolean, bfsBoolean, dijkstraBoolean;
-
-// var openSet;
-// var closedSet;
-// var total;
 var done, extraDone, superDone;
 
 
@@ -39,14 +35,9 @@ function setup() {
   button2.position(input2.x+input2.width, input2.y);
   button2.mousePressed(sparcityButton);
 
-  button3 = createButton('Kruskal\'s Algorithm');
-  button3.parent('canvas')
-  button3.position(input2.x, input2.y+input2.height);
-  button3.mousePressed(kButton);
-
   button4 = createButton('Depth First Search');
   button4.parent('canvas')
-  button4.position(input.x, button3.y+button3.height);
+  button4.position(input2.x, button2.y+button2.height);
   button4.mousePressed(dfsButton);
 
   button5 = createButton('Breadth First Search');
@@ -54,9 +45,14 @@ function setup() {
   button5.position(input.x, button4.y+button4.height);
   button5.mousePressed(bfsButton);
 
-  button6 = createButton('Dijkstra');
+  button3 = createButton('Kruskal\'s Algorithm');
+  button3.parent('canvas')
+  button3.position(input.x, button5.y+button5.height);
+  button3.mousePressed(kButton);
+
+  button6 = createButton('Dijkstra\'s Algorithm');
   button6.parent('canvas')
-  button6.position(input.x, button5.y+button5.height);
+  button6.position(input.x, button3.y+button3.height);
   button6.mousePressed(dijkstraButton);
 
   size = 5;

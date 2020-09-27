@@ -80,6 +80,9 @@ function PathFinder() {
                 this.grid[i][j].show(color(255))
             }
           }
+          noFill()
+          stroke(0)
+          rect(0, 0, width, height)
           for (var i = 0; i < this.closedSet.length; i++) {
             this.closedSet[i].show(color(255, 0, 0))
           }

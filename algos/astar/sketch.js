@@ -22,7 +22,9 @@ function setup() {
   button2.parent('img')
   button2.position(button.x+button.width+25, button.y);
   button2.mousePressed(dPressed);
-
+  noFill()
+  stroke(0)
+  rect(1,1,width-1,height-1)
 
   astar = new PathFinder;
 }
