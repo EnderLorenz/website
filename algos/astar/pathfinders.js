@@ -80,9 +80,7 @@ function PathFinder() {
                 this.grid[i][j].show(color(255))
             }
           }
-          noFill()
-          stroke(0)
-          rect(0, 0, width, height)
+          
           for (var i = 0; i < this.closedSet.length; i++) {
             this.closedSet[i].show(color(255, 0, 0))
           }
@@ -103,6 +101,9 @@ function PathFinder() {
           for (var i = 0; i < this.path.length; i++) {
             this.path[i].show(color(0, 0, 255));
           }
+          noFill()
+          stroke(0)
+          rect(0, 0, width, height)
     };
 
     this.dijkstraOpen = function() {
@@ -178,6 +179,9 @@ function PathFinder() {
           for (var i = 0; i < this.path.length; i++) {
             this.path[i].show(color(0, 0, 255));
           }
+          noFill()
+          stroke(0)
+          rect(0, 0, width, height)
     };
 
     this.removeFromArray = function(arr, elt) {
