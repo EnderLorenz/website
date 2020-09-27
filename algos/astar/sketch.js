@@ -14,13 +14,13 @@ function setup() {
   w = (width + 1) / cols;
   h = (height + 1) / rows;
   background(0);
-  button = createButton('A');
+  button = createButton('&nbsp A* &nbsp ');
   button.parent('img')
-  button.position(50, 205);
+  button.position(50, 225);
   button.mousePressed(aStarPressed);
   button2 = createButton('Dijkstra');
   button2.parent('img')
-  button2.position(button.x+button.width, 205);
+  button2.position(button.x+button.width+25, button.y);
   button2.mousePressed(aStarPressed);
 
 
