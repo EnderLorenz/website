@@ -38,12 +38,14 @@ function draw() {
 
 function aStarPressed() {
     aStarBoolean = true;
+    loop();
     dBoolean = true;
     astar = new PathFinder;
 }
 
 function dPressed() {
     dBoolean = true;
+    loop();
     astar = new PathFinder;
     aStarBoolean = false;
 }
