@@ -1,5 +1,5 @@
 var data = [];
-var rows = 15;
+var rows = 9;
 var counter = 2;
 var count = rows;
 var n_data;
@@ -21,7 +21,6 @@ function myRoutine(i) {
       text(data[j].cost, data[n_data].x-5, data[n_data].y+40)
       n_data++;
     }
- console.log(data)
 }
 
 function setup() {
@@ -29,7 +28,7 @@ function setup() {
     canvasSize = windowWidth
   } else canvasSize = windowHeight
 
-  canvas = createCanvas(1500, 1200);
+  canvas = createCanvas(canvasSize*2, canvasSize*2);
   canvas.parent('canvas');
   frameRate(.7);
   var xhere = width/2;
