@@ -21,7 +21,7 @@ function setup() {
   button2 = createButton('Dijkstra');
   button2.parent('img')
   button2.position(button.x+button.width+25, button.y);
-  button2.mousePressed(aStarPressed);
+  button2.mousePressed(dPressed);
 
 
   astar = new PathFinder;
@@ -34,18 +34,17 @@ function draw() {
   if (dBoolean) {
     astar.dijkstraOpen();
   }
-  
 }
 
 function aStarPressed() {
-    aStarBoolean = false;
+    aStarBoolean = true;
     dBoolean = true;
     astar = new PathFinder;
 }
 
 function dPressed() {
-    dBoolean = false;
+    dBoolean = true;
     astar = new PathFinder;
-    aStarBoolean = true;
+    aStarBoolean = false;
 }
 
