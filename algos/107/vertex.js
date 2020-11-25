@@ -18,6 +18,6 @@ function Vertex(index) {
       stroke(color);
       fill(color);
       ellipse(this.x, this.y, 5);
-      text(this.index,this.x, this.y+10)
+      // text(this.index,this.x, this.y+10)
     };
 }
