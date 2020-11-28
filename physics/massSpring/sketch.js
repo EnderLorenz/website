@@ -54,27 +54,27 @@ function drawSpring(x1, y1, x2, y2, windings, width, offset, col1, col2, lineWid
   ctx.stroke();
 }
 
-function cosForce(x) {
+function cosWave(x) {
+    if (wd.value/10000 < .001 || q0.value/10 < .001) return 0.0;
     return q0.value/10*Math.cos((wd.value/10000)*x);
 }
 
 function squareWave(t){
+    if (wd.value/10000 < .001 || q0.value/10 < .001) return 0.0;
     return q0.value/10*(2*Math.floor((wd.value/10000)*t) - Math.floor(2*(wd.value/10000)*t) + 1);
 }
 
 function triangleWave(t){
+    if (wd.value/10000 < .001 || q0.value/10 < .001) return 0.0;
     a = q0.value/10;
-    p = wd.value/10000;
-    if (p < .001) return 0.0;
-    p = 1.0/p;
+    p = 1.0/(wd.value/10000);
     return 4*a/p * Math.abs((((x-p/4)%p)+p)%p - p/2) - a;
 }
 
 function sawtoothWave(t){
+    if (wd.value/10000 < .001 || q0.value/10 < .001) return 0.0;
     a = q0.value/10;
-    p = wd.value/10000;
-    if (p < .001) return 0.0;
-    p = 1.0/p;
+    p = 1.0/(wd.value/10000);
     return a*2*(t/p-Math.floor(1/2+t/p));
 }
 
@@ -84,7 +84,7 @@ function massSpring(n, x, y, yp) {
   yp[0] = y[1];
   yp[1] = -(2.0*beta.value/1000*y[1] + (w0.value/100)*(w0.value/100)*y[0])/(m.value/10);
   if (cosBool) {
-    yp[1] = yp[1] - cosForce(x);
+    yp[1] = yp[1] - cosWave(x);
   } else if (squareBool) {
     yp[1] = yp[1] - squareWave(x);
   } else if (triangleBool) {
@@ -162,11 +162,12 @@ function triangleButton() {
 }
 
 function sawtoothButton() {
-    if (!triangleBool) {
+    if (!sawtoothBool) {
         triangleBool = false;
         squareBool = false;
         cosBool = false;
         sawtoothBool = true;
+        console.log("here")
         ctx.clearRect(0, 0, cw, ch);  
     }
 }
