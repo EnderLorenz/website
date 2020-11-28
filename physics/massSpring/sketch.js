@@ -55,12 +55,12 @@ function drawSpring(x1, y1, x2, y2, windings, width, offset, col1, col2, lineWid
 }
 
 function force(x) {
-    return q0.value/1000*Math.cos(wd.value/1000*x);
+    return q0.value/10*Math.cos(wd.value/1000*x);
 }
 
 function massSpring(n, x, y, yp) {
   yp[0] = y[1];
-  yp[1] = -(2.0*beta.value/1000*y[1] + (w0.value/100)*(w0.value/100)*y[0])/m - force(x);
+  yp[1] = -(2.0*beta.value/1000*y[1] + (w0.value/100)*(w0.value/100)*y[0])/(m.value/10) - force(x);
 }
 
 function rk4(order, func, xstart, xstop, xinc, y) {
@@ -225,7 +225,7 @@ let xstop = 0.01;
 let xinc = xstop;
 let inc = 0;
 maxX = 10;
-maxY = 1.5//y[2];
+maxY = 0.5//y[2];
 minX = 0;
 minY = y[0];
 let unscaled = new Array(1);
@@ -252,7 +252,7 @@ q0.innerHTML = q0.value;
 q0.oninput = function() {
     q0.innerHTML = this.value;
     var q0label = document.getElementById("q0label");
-    q0label.innerHTML = "q0 = " + this.value/1000;
+    q0label.innerHTML = "q0 = " + this.value/10;
 };
 
 var wd = document.getElementById("wd");
@@ -260,7 +260,15 @@ wd.innerHTML = wd.value;
 wd.oninput = function() {
     wd.innerHTML = this.value;
     var wdlabel = document.getElementById("wdlabel");
-    wdlabel.innerHTML = "wd = " + this.value/1000;
+    wdlabel.innerHTML = "wd = " + this.value/100;
+};
+
+var m = document.getElementById("m");
+m.innerHTML = m.value;
+m.oninput = function() {
+    m.innerHTML = this.value;
+    var mlabel = document.getElementById("mlabel");
+    mlabel.innerHTML = "mass = " + this.value/10;
 };
 
 

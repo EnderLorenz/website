@@ -1,7 +1,7 @@
 function Particle(x, y, sign) {
-  this.pos = createVector(x, y);
-  this.prev = createVector(x, y);
-  this.vel = createVector();
+  this.pos = createVector(x, y, 0);
+  this.prev = createVector(x, y, 0);
+  this.vel = createVector(0, 0, 0);
   this.acc = createVector();
   this.sign = sign;
 
@@ -11,10 +11,9 @@ function Particle(x, y, sign) {
     this.acc.mult(0);
   }
   this.show = function() {
-    stroke(255, 10);
-    strokeWeight(1);
+    stroke(255, 30);
+    strokeWeight(2);
     line(this.pos.x, this.pos.y, this.prev.x, this.prev.y);
-
     this.prev.x = this.pos.x;
     this.prev.y = this.pos.y;
   }

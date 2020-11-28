@@ -11,14 +11,14 @@ function setup() {
   canvas = createCanvas(canvasSize-50, canvasSize+150);
   canvas.parent('img');
   
-  for (var i = 0; i < 500; i++) {
+  for (var i = 0; i < 50; i++) {
     particles.push(new Particle(random(width), random(height)));
   }
   background(51);
 }
 
 function mousePressed() {
-  if (num%2 === 0) {
+  if (attractors.length%2 == 0) {
     sign = 1;
   } else {
     sign = -1;
@@ -29,10 +29,14 @@ function mousePressed() {
 
 function draw() {
   background(51);
-  stroke(0, 255, 150);
-  strokeWeight(3);
-  
+
+  strokeWeight(5);
   for (var i = 0; i < attractors.length; i++) {
+    if (attractors[i].z == 1) {
+      stroke(255, 0, 0);
+    } else {
+      stroke(0, 0, 255);
+    }
     point(attractors[i].x, attractors[i].y);
   }
   for (var i = 0; i < particles.length; i++) {

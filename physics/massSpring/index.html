@@ -56,17 +56,20 @@
             <p id="text">Mass Spring System</p>
             <p id="text"> mx''(t) + 2.0 &beta;x'(t) + &omega;<sub>0</sub><sup>2</sup> x(t) = q<sub>0</sub>cos[wD t]</p>
           </div>
-          <input type="range" min="1" max="50000" value="1000" class="slider" id="w0">
+          <input type="range" min="1" max="5000" value="1000" class="slider" id="w0">
           <label id="w0label"> &omega;<sub>0</sub> =  1.00</label>
           
-          <input type="range" min="0" max="5000" value="0" class="slider" id="beta">
+          <input type="range" min="0" max="50000" value="0" class="slider" id="beta">
           <label id="betalabel"> &beta; = 0</label>
 
-          <input type="range" min="0" max="5000000" value="0" class="slider" id="q0">
+          <input type="range" min="0" max="5000" value="0" class="slider" id="q0">
           <label id="q0label"> q0 = 0</label>
 
-          <input type="range" min="0" max="50000" value="0" class="slider" id="wd">
+          <input type="range" min="0" max="5000" value="0" class="slider" id="wd">
           <label id="wdlabel"> wd = 0</label>
+
+          <input type="range" min="1" max="500" value="10" class="slider" id="m">
+          <label id="mlabel"> mass = 1</label>
 
 
           <div id="canvas">
