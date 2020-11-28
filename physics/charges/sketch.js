@@ -23,19 +23,18 @@ function mousePressed() {
   } else {
     sign = -1;
   }
-  attractors.push(createVector(
-    mouseX, mouseY, sign));
+  attractors.push(createVector(mouseX, mouseY, sign));
 }
 
 function draw() {
-  background(51);
+  background(91);
 
   strokeWeight(5);
   for (var i = 0; i < attractors.length; i++) {
     if (attractors[i].z == 1) {
-      stroke(255, 0, 0);
+      stroke(155, 70, 120);
     } else {
-      stroke(0, 0, 255);
+      stroke(40, 156, 255);
     }
     point(attractors[i].x, attractors[i].y);
   }
@@ -47,7 +46,6 @@ function draw() {
     particle.update();
     particle.show();
   }
-  
 }
 
 function windowResized() {

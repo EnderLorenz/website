@@ -21,10 +21,10 @@ function Particle(x, y, sign) {
   this.attracted = function(target) {
     var force = p5.Vector.sub(target, this.pos);
     var dissquared = force.magSq();
-    dissquared = constrain(dissquared, 1, 3)
-    var g = .000001;//6.67408*10;
-    var strength = sign*g / dissquared;
-    force.setMag(strength*random(-1, 1));
+    dissquared = constrain(dissquared, 1, 2)
+    var g = 6.67408*.005;
+    var strength = target.z*g / dissquared;
+    force.setMag(strength);
     this.acc.add(force);
   }
 }
