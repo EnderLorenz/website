@@ -54,13 +54,44 @@ function drawSpring(x1, y1, x2, y2, windings, width, offset, col1, col2, lineWid
   ctx.stroke();
 }
 
-function force(x) {
-    return q0.value/10*Math.cos(wd.value/1000*x);
+function cosForce(x) {
+    return q0.value/10*Math.cos((wd.value/10000)*x);
 }
+
+function squareWave(t){
+    return q0.value/10*(2*Math.floor((wd.value/10000)*t) - Math.floor(2*(wd.value/10000)*t) + 1);
+}
+
+function triangleWave(t){
+    a = q0.value/10;
+    p = wd.value/10000;
+    if (p < .001) return 0.0;
+    p = 1.0/p;
+    return 4*a/p * Math.abs((((x-p/4)%p)+p)%p - p/2) - a;
+}
+
+function sawtoothWave(t){
+    a = q0.value/10;
+    p = wd.value/10000;
+    if (p < .001) return 0.0;
+    p = 1.0/p;
+    return a*2*(t/p-Math.floor(1/2+t/p));
+}
+
+
 
 function massSpring(n, x, y, yp) {
   yp[0] = y[1];
-  yp[1] = -(2.0*beta.value/1000*y[1] + (w0.value/100)*(w0.value/100)*y[0])/(m.value/10) - force(x);
+  yp[1] = -(2.0*beta.value/1000*y[1] + (w0.value/100)*(w0.value/100)*y[0])/(m.value/10);
+  if (cosBool) {
+    yp[1] = yp[1] - cosForce(x);
+  } else if (squareBool) {
+    yp[1] = yp[1] - squareWave(x);
+  } else if (triangleBool) {
+    yp[1] = yp[1] - triangleWave(x);
+  } else if (sawtoothBool) {
+    yp[1] = yp[1] - sawtoothWave(x);
+  }
 }
 
 function rk4(order, func, xstart, xstop, xinc, y) {
@@ -92,6 +123,51 @@ function graph() {
     if (!graphing) {
        graphing = true;
        ctx.clearRect(0, 0, cw, ch);  
+    }
+}
+
+var cosBool = true;
+var squareBool = false;
+var triangleBool = false;
+var sawtoothBool = false;
+
+function cosButton() {
+    if (!squareBool) {
+        squareBool = false;
+        triangleBool = false;
+        sawtoothBool = false;
+        cosBool = true;
+        ctx.clearRect(0, 0, cw, ch);  
+    }
+}
+
+function squareButton() {
+    if (!squareBool) {
+        squareBool = true;
+        cosBool = false;
+        triangleBool = false;
+        sawtoothBool = false;
+        ctx.clearRect(0, 0, cw, ch);  
+    }
+}
+
+function triangleButton() {
+    if (!triangleBool) {
+        triangleBool = true;
+        squareBool = false;
+        cosBool = false;
+        sawtoothBool = false;
+        ctx.clearRect(0, 0, cw, ch);  
+    }
+}
+
+function sawtoothButton() {
+    if (!triangleBool) {
+        triangleBool = false;
+        squareBool = false;
+        cosBool = false;
+        sawtoothBool = true;
+        ctx.clearRect(0, 0, cw, ch);  
     }
 }
 
@@ -260,7 +336,7 @@ wd.innerHTML = wd.value;
 wd.oninput = function() {
     wd.innerHTML = this.value;
     var wdlabel = document.getElementById("wdlabel");
-    wdlabel.innerHTML = "wd = " + this.value/100;
+    wdlabel.innerHTML = "wd = " + this.value/10000;
 };
 
 var m = document.getElementById("m");
@@ -270,7 +346,6 @@ m.oninput = function() {
     var mlabel = document.getElementById("mlabel");
     mlabel.innerHTML = "mass = " + this.value/10;
 };
-
 
 
 
