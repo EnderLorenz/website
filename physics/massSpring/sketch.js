@@ -264,6 +264,13 @@ wd.oninput = function() {
 };
 
 
+
+
+
+
+
+
+
  (function(){
   const RESIZE_DEBOUNCE_TIME = 100;
   var  createCanvas, resizeCanvas, setGlobals, resizeCount = 0;
@@ -283,7 +290,7 @@ wd.oninput = function() {
           canvas = createCanvas();
       }
       canvas.width = innerWidth-50;
-      canvas.height = innerWidth/2+155;
+      canvas.height = innerWidth/2+255;
       cw = canvas.width;
       ch = canvas.height;
       ctx = canvas.getContext("2d");
