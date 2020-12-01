@@ -18,7 +18,7 @@ function display() {
     ctx.lineTo(xGraph[0]+10, yGraph[1]-5);
     ctx.strokeStyle = "black";
     ctx.stroke();
-    ctx.fillText("asd" + xMin.toFixed(1), xGraph[0], yGraph[1]+15);
+    ctx.fillText(xMin.toFixed(1), xGraph[0], yGraph[1]+15);
     
     // x_mid, y0 label
     ctx.beginPath();
