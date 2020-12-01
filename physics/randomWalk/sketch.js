@@ -156,9 +156,7 @@ function start() {
   }
 
   function update(timer) { // Main update loop
-      if(ctx === undefined){
-          return;
-      }
+      if(ctx === undefined) return;
       globalTime = timer;
       display();
       requestAnimationFrame(update);
@@ -169,4 +167,3 @@ function start() {
       requestAnimationFrame(update);
   },0);
 })();
-/** SimpleFullCanvasMouse.js end **/
