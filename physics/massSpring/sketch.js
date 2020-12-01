@@ -55,26 +55,26 @@ function drawSpring(x1, y1, x2, y2, windings, width, offset, col1, col2, lineWid
 }
 
 function cosWave(x) {
-    if (wd.value/10000 < .001 || q0.value/10 < .001) return 0.0;
-    return q0.value/10*Math.cos((wd.value/10000)*x);
+    if (wd.value < .001 || q0.value < .001) return 0.0;
+    return q0.value*Math.cos((wd.value)*x);
 }
 
 function squareWave(t){
-    if (wd.value/10000 < .001 || q0.value/10 < .001) return 0.0;
-    return q0.value/10*(2*Math.floor((wd.value/10000)*t) - Math.floor(2*(wd.value/10000)*t) + 1);
+    if (wd.value < .001 || q0.value < .001) return 0.0;
+    return q0.value*(2*Math.floor((wd.value)*t) - Math.floor(2*(wd.value)*t) + 1);
 }
 
 function triangleWave(t){
-    if (wd.value/10000 < .001 || q0.value/10 < .001) return 0.0;
-    a = q0.value/10;
-    p = 1.0/(wd.value/10000);
+    if (wd.value < .001 || q0.value < .001) return 0.0;
+    a = q0.value;
+    p = 1.0/(wd.value);
     return 4*a/p * Math.abs((((x-p/4)%p)+p)%p - p/2) - a;
 }
 
 function sawtoothWave(t){
-    if (wd.value/10000 < .001 || q0.value/10 < .001) return 0.0;
-    a = q0.value/10;
-    p = 1.0/(wd.value/10000);
+    if (wd.value < .001 || q0.value < .001) return 0.0;
+    a = q0.value;
+    p = 1.0/wd.value;
     return a*2*(t/p-Math.floor(1/2+t/p));
 }
 
@@ -82,7 +82,7 @@ function sawtoothWave(t){
 
 function massSpring(n, x, y, yp) {
   yp[0] = y[1];
-  yp[1] = -(2.0*beta.value/1000*y[1] + (w0.value/100)*(w0.value/100)*y[0])/(m.value/10);
+  yp[1] = -(2.0*beta.value*y[1] + w0.value*w0.value*y[0])/(m.value);
   if (cosBool) {
     yp[1] = yp[1] - cosWave(x);
   } else if (squareBool) {
@@ -167,7 +167,6 @@ function sawtoothButton() {
         squareBool = false;
         cosBool = false;
         sawtoothBool = true;
-        console.log("here")
         ctx.clearRect(0, 0, cw, ch);  
     }
 }
@@ -184,7 +183,7 @@ function display() {
         }
     }
     var xGraph = [25, cw-25]
-    var yGraph = [0, 2*cw/3]
+    var yGraph = [0, ch-25]
     var graphInc = (xGraph[1]-xGraph[0])/1000;
     var y0 = scale(y[0], -maxY, maxY, yGraph[0]+10, yGraph[1]-10);
     oldValues0.unshift(y0);
@@ -211,7 +210,7 @@ function display() {
     ctx.lineTo(xGraph[0]+40, yGraph[1]-5);
     ctx.strokeStyle = "black";
     ctx.stroke();
-    ctx.fillText(xstart.toFixed(2), 27, 2*cw/3+15);
+    ctx.fillText(xstart.toFixed(2), 45, ch-10);
     
     // x_mid, y0 label
     ctx.beginPath();
@@ -219,7 +218,7 @@ function display() {
     ctx.lineTo((xGraph[0] + xGraph[1])/2+10, yGraph[1]-5);
     ctx.strokeStyle = "black";
     ctx.stroke();
-    ctx.fillText((xstart-5).toFixed(2), (xGraph[0] + xGraph[1])/2+5, 2*cw/3+15);
+    ctx.fillText((xstart-5).toFixed(2), (xGraph[0] + xGraph[1])/2+5, ch-10);
 
     // x_max, y0 label
     ctx.beginPath();
@@ -227,7 +226,7 @@ function display() {
     ctx.lineTo(xGraph[1]+10, yGraph[1]-5);
     ctx.strokeStyle = "black";
     ctx.stroke();
-    ctx.fillText((xstart+10).toFixed(2), cw-25, 2*cw/3+15);
+    ctx.fillText((xstart-10).toFixed(2), cw-25, ch-10);
 
     // x0,y_mid label
     ctx.beginPath();
@@ -251,7 +250,7 @@ function display() {
     ctx.lineTo(xGraph[0]+5, yGraph[1]-10);
     ctx.strokeStyle = "black";
     ctx.stroke();
-    ctx.fillText(-maxY.toFixed(1), 0, 2*cw/3-7);
+    ctx.fillText(-maxY.toFixed(1), 0, ch-35);
     
     
     ctx.beginPath();
@@ -289,7 +288,7 @@ const scale = (num, in_min, in_max, out_min, out_max) => {
 
 
 
-var w, h, cw, ch, canvas, ctx, mouse, globalTime = 0, firstRun = true, xxNow = 0, middle;
+var cw, ch, canvas, ctx, mouse, globalTime = 0, firstRun = true, middle;
 
 var beta, k, m;
 k = 1.0;
@@ -302,7 +301,7 @@ let xstop = 0.01;
 let xinc = xstop;
 let inc = 0;
 maxX = 10;
-maxY = 0.5//y[2];
+maxY = 1.5//y[2];
 minX = 0;
 minY = y[0];
 let unscaled = new Array(1);
@@ -312,16 +311,18 @@ var w0 = document.getElementById("w0");
 w0.innerHTML = w0.value;
 w0.oninput = function() {
     w0.innerHTML = this.value;
+    tmp = parseFloat(this.value);
     var w0label = document.getElementById("w0label");
-    w0label.innerHTML = "&omega;<sub>0</sub> = " + this.value/100;
+    w0label.innerHTML = "&omega;<sub>0</sub> = " + tmp.toFixed(2);
 };
 
 var beta = document.getElementById("beta");
 beta.innerHTML = beta.value;
 beta.oninput = function() {
     beta.innerHTML = this.value;
+    tmp = parseFloat(this.value);
     var betalabel = document.getElementById("betalabel");
-    betalabel.innerHTML = "&beta; = " + this.value/1000;
+    betalabel.innerHTML = "&beta; = " + tmp.toFixed(2);
 };
 
 var q0 = document.getElementById("q0");
@@ -329,15 +330,17 @@ q0.innerHTML = q0.value;
 q0.oninput = function() {
     q0.innerHTML = this.value;
     var q0label = document.getElementById("q0label");
-    q0label.innerHTML = "q0 = " + this.value/10;
+    tmp = parseFloat(this.value);
+    q0label.innerHTML = "q0 = " + tmp.toFixed(2);
 };
 
 var wd = document.getElementById("wd");
 wd.innerHTML = wd.value;
 wd.oninput = function() {
     wd.innerHTML = this.value;
+    tmp = parseFloat(this.value);
     var wdlabel = document.getElementById("wdlabel");
-    wdlabel.innerHTML = "wd = " + this.value/10000;
+    wdlabel.innerHTML = "&omega;<sub>D</sub> = " + tmp.toFixed(2);
 };
 
 var m = document.getElementById("m");
@@ -345,47 +348,38 @@ m.innerHTML = m.value;
 m.oninput = function() {
     m.innerHTML = this.value;
     var mlabel = document.getElementById("mlabel");
-    mlabel.innerHTML = "mass = " + this.value/10;
+    tmp = parseFloat(this.value);
+    mlabel.innerHTML = "mass = " + tmp.toFixed(2);
 };
-
-
-
-
-
-
-
 
  (function(){
   const RESIZE_DEBOUNCE_TIME = 100;
   var  createCanvas, resizeCanvas, setGlobals, resizeCount = 0;
   createCanvas = function () {
-      var c,
-      cs;
+      var c, cs;
       cs = (c = document.createElement("canvas")).style;
       div = document.getElementById("canvas");
       cs.zIndex = 1000;
       div.appendChild(c);
-      w = div.clientWidth;
-      h = div.clientHeight;
+    //   w = div.clientWidth;
+    //   h = div.clientHeight;
       return c;
   }
   resizeCanvas = function () {
-      if (canvas === undefined) {
-          canvas = createCanvas();
-      }
+      if (canvas === undefined) canvas = createCanvas();
       canvas.width = innerWidth-50;
-      canvas.height = innerWidth/2+255;
-      cw = canvas.width;
-      ch = canvas.height;
-      ctx = canvas.getContext("2d");
-      if (typeof setGlobals === "function") {
-          setGlobals();
+      canvas.height = 2*(canvas.width)/3+50;
+      if (canvas.height > innerHeight){
+        canvas.height = innerHeight-50
+        canvas.width = 3*canvas.height/2;
       }
+      ctx = canvas.getContext("2d");
+      if (typeof setGlobals === "function") setGlobals();
       if (typeof onResize === "function") {
           if(firstRun){
               onResize();
               firstRun = false;
-          } else{
+          } else {
               resizeCount += 1;
               setTimeout(debounceResize, RESIZE_DEBOUNCE_TIME);
           }
@@ -398,8 +392,8 @@ m.oninput = function() {
       }
   }
   setGlobals = function () {
-      cw = (canvas.width);
-      ch = (canvas.height);
+      cw = canvas.width;
+      ch = canvas.height;
       middle = ch/2;
   }
 

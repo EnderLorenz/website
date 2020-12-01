@@ -105,8 +105,7 @@ body {
   }
 
   .gallerysCanvas{
-    padding: 20px;
-    /* overflow: hidden; */
+    padding: 5px;
     text-align: center;
   }
 
@@ -117,24 +116,35 @@ body {
     height: 220px;
     overflow: hidden;
     margin: 10px;
-    /* cursor: pointer; */
+    
   }
 
+
+
+  /* Canvas *//* Canvas *//* Canvas *//* Canvas *//* Canvas *//* Canvas *//* Canvas *//* Canvas */
   .canvas{
     display: inline-block;
-    width: 100%;
-    /* max-width: 340px; */
-    /* height: 220px; */
-    /* overflow: visible; */
     margin: 10px;
-    /* cursor: pointer; */
+  }
+  
+  .button-wrapper {
+    display: inline-block;
+    justify-content: space-between;
+    padding: 3px;
   }
 
-.img img{
-  width: auto;
-  height: 190px;
-  transition: .6s;
-}
+  .button {
+    display: inline-block;
+    width: 100%;
+    max-width: 200px;
+    margin: 5px;
+  }
+
+  .img img{
+    width: auto;
+    height: 190px;
+    transition: .6s;
+  }
 
 .img embed{
   width: auto;
@@ -226,7 +236,7 @@ margin-left: 4em;
   .img img:hover{
     transform: scale(.9);
   }
-  @media (max-width:7000px){
+  @media (max-width:700px){
     .img {
       margin: 10px 0;
     }
@@ -245,15 +255,5 @@ margin-left: 4em;
       text-align:left; 
       margin-left: 4em; 
     }
-/* 
-    .img{
-      display: inline-block;
-      width: 100%;
-      max-width: 340px;
-      height: 220px;
-      overflow: hidden;
-      margin: 10px;
-      /* cursor: pointer; */
-    } */
     
   }
