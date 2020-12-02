@@ -93,9 +93,6 @@ body {
 	}
 }
 
-
-
-
 /* potfolio styles */
 /* https://www.darkcode.info/2017/09/responsive-web-design-awesome-gallery.html */
 .gallerys{
@@ -116,7 +113,6 @@ body {
     height: 220px;
     overflow: hidden;
     margin: 10px;
-    
   }
 
 
@@ -124,12 +120,12 @@ body {
   /* Canvas *//* Canvas *//* Canvas *//* Canvas *//* Canvas *//* Canvas *//* Canvas *//* Canvas */
   .canvas{
     display: inline-block;
-    margin: 10px;
+    padding: 25px;
   }
   
   .button-wrapper {
-    display: inline-block;
-    justify-content: space-between;
+    /* display: inline-block; */
+    /* justify-content: space-between; */
     padding: 3px;
   }
 
@@ -137,7 +133,7 @@ body {
     display: inline-block;
     width: 100%;
     max-width: 200px;
-    margin: 5px;
+    margin: 15px;
   }
 
   .img img{
@@ -241,7 +237,7 @@ margin-left: 4em;
       margin: 10px 0;
     }
     .canvas {
-      margin: 10px 0;
+      padding: 25px;
     }
     .text {
       margin-left: 1.5em;
