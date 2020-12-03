@@ -7,7 +7,6 @@ function draw1() {
         var sets = sw.sweep(pack.packet.bind(pack), -20, 20, .1)
         graph = new Graph(ctx);
         graph.plot(sets[0],sets[1], "rgb(3, 100, 100)");
-        // console.log(sets)
         graph.graph();
 }
 
@@ -17,12 +16,11 @@ function draw2() {
     ctx.clearRect(0, 0, cw, ch);
     var pack = new Packet(45.0, 55.0, kinc1, t1, 50.0, vp01, a1);
     var sw = new Sweep();
-    var sets = sw.sweep(pack.packetRe.bind(pack), -20, 20, .1)
+    var sets = sw.sweep(pack.packetRe.bind(pack), -20, 20, .03)
     graph = new Graph(ctx);
-    // console.log(sets[1]);
-    graph.plot(sets[0],sets[1], "rgb(150, 10, 10)");
-    var sets = sw.sweep(pack.packetRe.bind(pack), -20, 20, .1)
-    graph.plot(sets[0],sets[1], "rgb(10, 10, 150)");
+    graph.plot(sets[0],sets[1], "rgba(150, 10, 10, .5)");
+    var sets = sw.sweep(pack.packetIm.bind(pack), -20, 20, .03)
+    graph.plot(sets[0],sets[1], "rgba(10, 10, 150, .2)");
     graph.graph();
 }
 
