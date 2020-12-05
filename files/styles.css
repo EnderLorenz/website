@@ -132,7 +132,7 @@ body {
   .button {
     display: inline-block;
     width: 100%;
-    max-width: 140px;
+    max-width: 139px;
     margin: 15px;
   }
 
@@ -151,7 +151,6 @@ body {
 .img script{
   width: auto;
   height: 190px;
-  over
 }
 
 .img p{

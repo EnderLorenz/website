@@ -4,8 +4,8 @@ function Graph(ctx) {
     this.xMax = 0;
     this.yMin = 0;
     this.yMax = 0;
-    xGraph = [25, cw-25]
-    yGraph = [0, ch-25]
+    xGraph = [25, cw-26]
+    yGraph = [1, ch-25]
     this.scale = function(num, in_min, in_max, out_min, out_max)  {
         return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
     }
@@ -28,6 +28,7 @@ function Graph(ctx) {
         this.ctx.lineTo(xGraph[0]+bottomX, yGraph[1]-bottomY);
         this.ctx.strokeStyle = "black";
         this.ctx.stroke();
+        this.ctx.font = 'Open Sans Condensed'
         this.ctx.fillText(this.xMin.toFixed(2), xGraph[0]+bottomX, yGraph[1] + 3*bottomY);
         
         // x_mid, y0 label
@@ -36,6 +37,7 @@ function Graph(ctx) {
         this.ctx.lineTo((xGraph[0] + xGraph[1])/2 + bottomX, yGraph[1] - bottomY);
         this.ctx.strokeStyle = "black";
         this.ctx.stroke();
+        this.ctx.font = 'Open Sans Condensed'
         this.ctx.fillText( ((this.xMin+this.xMax)/2).toFixed(2), (xGraph[0] + xGraph[1])/2+bottomY, yGraph[1] + 3*bottomY);
 
         // x_max, y0 label
@@ -44,6 +46,7 @@ function Graph(ctx) {
         this.ctx.lineTo(xGraph[1]+bottomX, yGraph[1]-leftY);
         this.ctx.strokeStyle = "black";
         this.ctx.stroke();
+        this.ctx.font = 'Open Sans Condensed'
         this.ctx.fillText(this.xMax.toFixed(2), xGraph[1], yGraph[1] + 3*bottomY);
 
         // x0,y_mid label
@@ -52,6 +55,7 @@ function Graph(ctx) {
         this.ctx.lineTo(xGraph[0]+leftX, (yGraph[1]+yGraph[0])/2);
         this.ctx.strokeStyle = "black";
         this.ctx.stroke();
+        this.ctx.font = 'Open Sans Condensed'
         this.ctx.fillText(((this.yMin+this.yMax)/2).toFixed(1), xGraph[0]-25, (yGraph[1]+yGraph[0])/2+3);
 
         // x0,y_max label
@@ -60,6 +64,7 @@ function Graph(ctx) {
         this.ctx.lineTo(xGraph[0]+leftX, yGraph[0]+10);
         this.ctx.strokeStyle = "black";
         this.ctx.stroke();
+        this.ctx.font = 'Open Sans Condensed'
         this.ctx.fillText(this.yMax.toFixed(1), xGraph[0]-25, yGraph[0]+13);
 
         //x0,y_min label
@@ -68,6 +73,7 @@ function Graph(ctx) {
         this.ctx.lineTo(xGraph[0]+leftX, yGraph[1]-10);
         this.ctx.strokeStyle = "black";
         this.ctx.stroke();
+        this.ctx.font = 'Open Sans Condensed'
         this.ctx.fillText(this.yMin.toFixed(1), xGraph[0]-25, ch-30);
     }
 

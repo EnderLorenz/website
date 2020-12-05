@@ -157,6 +157,8 @@ re = false;
         var sets = sw.sweep(pack.packet.bind(pack), -20, 20, .1)
         graph.plot(sets[0], sets[1], "rgb(100, 100, 200)")
         graph.graph();
+        mag = true;
+        re = false;
   }
 
   setTimeout(function(){
