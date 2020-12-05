@@ -3,12 +3,17 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wave Packets</title>
+  <title>Root Finding</title>
   <link rel="stylesheet" href="../../files/text.css">
   <script src="../../files/p5.min.js"></script>
   <script src="graph.js" type="text/javascript"></script>
-  <script src="packet.js" type="text/javascript"></script>
   <script src="sweep.js" type="text/javascript"></script> 
+  <script src="newtonRaphson.js" type="text/javascript"></script>
+  <script src="secant.js" type="text/javascript"></script>
+  <script src="regulaFalsi.js" type="text/javascript"></script>
+  <script src="bisection.js" type="text/javascript"></script>
+  <script src="line.js" type="text/javascript"></script>
+  <script src="function.js" type="text/javascript"></script>
   <link rel="stylesheet" type="text/css" href="../../files/styles.css">
   <link rel="shortcut icon" href="../../images/faviconit/favicon.ico">
 	<link rel="icon" sizes="16x16 32x32 64x64" href="../../images/faviconit/favicon.ico">
@@ -54,29 +59,58 @@
   <body>
     <div class="gallerysCanvas">
       <div class="button-wrapper" id="buttons">
-        <p>Quantum Wave Packets</p>
+        <p>Function</p>
         <div class = "button">
-          <button onclick="magButton()">Magnitude Squared</button>
+          <input type="text" id="func" placeholder="Function: ie. Math.sin(x)">
+        </div>
+      </div>
+      <div class="button-wrapper" id="buttons">
+        <p>Bounds</p>
+        <div class = "button">
+          <input type="number" min="-100" max="100" value="-6" id="xMin" placeholder="X-Min">
+          <label id="xMinLabel"> X-Min</label>
         </div>
         <div class = "button">
-          <button onclick="reButton()">Real + Imaginary</button>
+          <input type="number" min="-100" max="100" value="6" id="xMax" placeholder="X-Max">
+          <label id="xMaxLabel"> X-Max</label>
         </div>
-        <p></p>
-        <div class ="button">
-          <input type="range" min="0.01" max="1.00" value=".10" class="slider" id="kinc" step=".01">
-          <label id="kinclabel"> k<sub>inc</sub> = 0.10</label>
+        <div class = "button">
+          <input type="number" min="-100" max="100" value="-1" id="yMin" placeholder="X-Min">
+          <label id="yMinLabel"> Y-Min</label>
         </div>
-        <div class ="button">
-          <input type="range" min="1" max="5" value="1" class="slider" id="a" step="1">
-          <label id="alabel"> a = 1.00</label>
+        <div class = "button">
+          <input type="number" min="-100" max="100" value="1" id="yMax" placeholder="X-Max">
+          <label id="yMaxLabel"> Y-Max</label>
         </div>
-        <div class ="button">
-          <input type="range" min="1" max="5" value="1" class="slider" id="vp0" step="1">
-          <label id="vp0label"> V<sub>p0</sub> = 1</label>
+      </div>
+      <div class="button-wrapper" id="buttons">
+        <p>Initial Guesses (only one needed for Newton-Raphson)</p>
+        <div class = "button">
+          <input type="number" id="inputGuess" placeholder="Init Guess 1">
         </div>
-        <div class ="button">
-          <input type="range" min="0" max="5" value="0" class="slider" id="t" step="1">
-          <label id="tlabel"> t = 0</label>
+        <div class = "button">
+          <input type="number" id="inputGuess2" placeholder="Init Guess 2">
+        </div>
+      </div>
+      <div class="button-wrapper" id="buttons">
+        <p>Root Finding Method</p>
+        <div class = "button">
+          <button onclick="newtonRaphsonButton()">Newton-Raphson</button>
+        </div>
+        <div class = "button">
+          <button onclick="secantButton()">Secant</button>
+        </div>
+        <div class = "button">
+          <button onclick="regulaFalsiButton()">Regula Falsi</button>
+        </div>
+        <div class = "button">
+          <button onclick="bisectionButton()">Bisection</button>
+        </div>
+      </div>
+      <div class="button-wrapper" id="buttons">
+        <div class = "button">
+          <button onclick="stepButton()">Step</button>
+          <p id="res">Result:</p>
         </div>
       </div>
       <div class="canvas" id ="canvas">
