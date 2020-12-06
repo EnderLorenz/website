@@ -33,52 +33,65 @@ function Graph(ctx, xRange, yRange) {
         this.ctx.beginPath();
         this.ctx.rect(xGraph[0], yGraph[0], xGraph[1], yGraph[1]);
         this.ctx.stroke();
-
         // 0, 0
         var bottomX = 10;
         var bottomY = 5;
         var leftX = 5;
         var leftY = 5;
+        ctx.textAlign = "left";
         this.ctx.beginPath();
         this.ctx.moveTo(xGraph[0]+bottomX, yGraph[1]+bottomY);
         this.ctx.lineTo(xGraph[0]+bottomX, yGraph[1]-bottomY);
         this.ctx.stroke();
-        this.ctx.fillText(this.xMin.toFixed(2), xGraph[0]+bottomX, yGraph[1] + 3*bottomY);
-        
+        if (Math.abs(this.xMin) > 10 || Math.abs(this.xMax) > 10) fix = 0;
+        else fix = 1;
+        this.ctx.fillText(this.xMin.toFixed(fix), xGraph[0]+bottomX, yGraph[1] + 3*bottomY);
+        ctx.textAlign = "left";
         // x_mid, y0 label
         this.ctx.beginPath();
         this.ctx.moveTo((xGraph[0] + xGraph[1])/2 + bottomX, yGraph[1] + bottomY);
         this.ctx.lineTo((xGraph[0] + xGraph[1])/2 + bottomX, yGraph[1] - bottomY);
         this.ctx.stroke();
-        this.ctx.fillText( ((this.xMin+this.xMax)/2).toFixed(2), (xGraph[0] + xGraph[1])/2+bottomY, yGraph[1] + 3*bottomY);
-
+        if (Math.abs(this.xMin) > 10 || Math.abs(this.xMax) > 10) fix = 0;
+        else fix = 1;
+        this.ctx.fillText( ((this.xMin+this.xMax)/2).toFixed(fix), (xGraph[0] + xGraph[1])/2+bottomX, yGraph[1] + 3*bottomY);
+        ctx.textAlign = "center";
         // x_max, y0 label
         this.ctx.beginPath();
         this.ctx.moveTo(xGraph[1]+bottomX, yGraph[1]+leftY);
         this.ctx.lineTo(xGraph[1]+bottomX, yGraph[1]-leftY);
         this.ctx.stroke();
-        this.ctx.fillText(this.xMax.toFixed(2), xGraph[1], yGraph[1] + 3*bottomY);
-
+        if (Math.abs(this.xMax) > 10) fix = 0;
+        else fix = 1;
+        this.ctx.fillText(this.xMax.toFixed(fix), xGraph[1]+bottomX, yGraph[1] + 3*bottomY);
+        ctx.textAlign = "end";
         // x0,y_mid label
         this.ctx.beginPath();
         this.ctx.moveTo(xGraph[0]-leftX, (yGraph[1]+yGraph[0])/2);
         this.ctx.lineTo(xGraph[0]+leftX, (yGraph[1]+yGraph[0])/2);
         this.ctx.stroke();
-        this.ctx.fillText(((this.yMin+this.yMax)/2).toFixed(1), xGraph[0]-25, (yGraph[1]+yGraph[0])/2+3);
-
+        if (Math.abs(this.yMin) > 10 || Math.abs(this.yMax) > 10) fix = 0;
+        else fix = 1;
+        this.ctx.fillText(((this.yMin+this.yMax)/2).toFixed(fix), xGraph[0]-6, (yGraph[1]+yGraph[0])/2+3);
+        ctx.textAlign = "end"; 
         // x0,y_max label
         this.ctx.beginPath();
         this.ctx.moveTo(xGraph[0]-leftX, yGraph[0]+10);
         this.ctx.lineTo(xGraph[0]+leftX, yGraph[0]+10);
         this.ctx.stroke();
-        this.ctx.fillText(this.yMax.toFixed(1), xGraph[0]-25, yGraph[0]+13);
-
+        if (Math.abs(this.yMin) > 10 || Math.abs(this.yMax) > 10) fix = 0;
+        else fix = 1;
+        this.ctx.fillText(this.yMax.toFixed(fix), xGraph[0]-6, yGraph[0]+13);
+        ctx.textAlign = "end"; 
         //x0,y_min label
         this.ctx.beginPath();
         this.ctx.moveTo(xGraph[0]-leftX, yGraph[1]-10);
         this.ctx.lineTo(xGraph[0]+leftX, yGraph[1]-10);
         this.ctx.stroke();
-        this.ctx.fillText(this.yMin.toFixed(1), xGraph[0]-25, yGraph[1]- yGraph[0] - bottomY);
+        if (Math.abs(this.yMin) > 10 || Math.abs(this.yMax) > 10) fix = 0;
+        else fix = 1;
+        this.ctx.fillText(this.yMin.toFixed(fix), xGraph[0]-6, yGraph[1]- yGraph[0] - bottomY);
+        ctx.textAlign = "end"; 
     }
 
     this.plot = function(xData, yData, color) {
