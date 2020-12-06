@@ -22,7 +22,7 @@ setupPlot = function() {
         "The blue curve shows a least squares fit: " + 
         res[0].toFixed(0) + "*Exp(" + res[1].toFixed(2) + "*x)"
     wlsq = document.getElementById("wlsq").innerHTML = 
-        "The blue curve shows a weighted least squares fit: " + 
+        "The red curve shows a weighted least squares fit: " + 
         res1[0].toFixed(0) + "*Exp(" + res1[1].toFixed(2) + "*x)"
 }
 
