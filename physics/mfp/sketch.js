@@ -3,7 +3,8 @@ function display() {
         count++;     
         runningTotal += sim.simulate();
         var res = runningTotal/(count*sim.nArrows);
-        document.getElementById("res").innerHTML = "Mean of 55 arrows in " + count + " forrests: &mu; = " + res.toFixed(1) ;
+        document.getElementById("res").innerHTML = 
+            "Mean of 100 arrows in " + count + " forrests: &mu; = " + res.toFixed(1) ;
     }
     if (graphing) {
         graph = new Graph(ctx)
@@ -14,7 +15,7 @@ function display() {
         res = fit.wlsq();
         exp = new Exponential(res[0], res[1], 0);
         exp.exponentialDraw(graph, 0, binning.bins[binning.bins.length-1], "rgb(20, 150, 250)");
-        document.getElementById("res").innerHTML = "Weighted Least Sqaures Exponential Fit: " + res[0].toFixed(1) + "*Exp(-x/" + (-1/res[1]).toFixed(1) + ")"; 
+        document.getElementById("res").innerHTML = "Binning the hit distances and performing a Weighted Least Sqaures Exponential Fit:<br>" + res[0].toFixed(1) + "*Exp(-x/" + (-1/res[1]).toFixed(1) + ")"; 
         graph.graph()
     }    
 }
@@ -75,9 +76,9 @@ var runningTotal = 0, count = 0, graphing = false, simulating = true, sim;
     function update(timer) { // Main update loop
         if(ctx === undefined) return;
         globalTime = timer;
-        sim = new Simulate(55, 1);
+        sim = new Simulate(100, 1);
         display();
-        setInterval(display, 1000);
+        setInterval(display, 500);
     }
     setTimeout(function(){
         resizeCanvas();
