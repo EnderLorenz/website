@@ -13,7 +13,7 @@ function Graph(ctx, xRange, yRange) {
         this.yMax = yRange[1];
     }
     if (cw > ch) {
-        xGraph = [65, ch-121]
+        xGraph = [65+ (cw - ch)/2, ch-121]
         yGraph = [1, ch-121]
     } else {
         xGraph = [65, cw-121]
