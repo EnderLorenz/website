@@ -1,8 +1,10 @@
-function Bisection(func) {
-    this.func = func;
-
-    this.bisection = function(a, b, nmax, tol) {
-        var fa, fb, c, fc, d, n;
+class Bisection {
+    constructor(func) {
+        this.func = func;
+    }
+    
+    bisection = function(a, b, nmax, tol) {
+        let fa, fb, c, fc, d, n;
           
         fa = this.func.f(a);
         fb = this.func.f(b);
@@ -36,8 +38,8 @@ function Bisection(func) {
         return(0);
     }
 
-    this.bisectionStep = function(a, b) {
-        var fa, fb, c, fc, d;
+    bisectionStep = function(a, b) {
+        let fa, fb, c, fc, d;
         fa = this.func.f(a);
         fb = this.func.f(b);
         d = 0.5 * (b - a);
@@ -56,31 +58,21 @@ function Bisection(func) {
         }
     }
 
-    this.bisectionDrawStep = function(a, b) {
-        var fa, fb, c, fc, d;
+    bisectionDrawStep = function(a, b) {
+        let fa, fb, c, fc, d;
         fa = this.func.f(a);
         fb = this.func.f(b);
         d = 0.5 * (b - a);
         c = a + d;
         fc = this.func.f(c);
         
-        var sw = new Sweep();
         this.func.fDraw(graph)
-
-        var verticleLine = new Line(0, 0, a);
-        if (this.func.f(a) <= 0) var set = sw.sweepSwitch(verticleLine.line.bind(verticleLine), this.func.f(a), -0.1, .1);//line to func(est)
-        else var set = sw.sweepSwitch(verticleLine.line.bind(verticleLine), 0.1, this.func.f(a), .1);//line to func(est)
-        graph.point(set[0],set[1], "rgb(3, 100, 100)", .5);
+        graph.dottedLine(a, 0, a, this.func.f(a), "rgb(3, 100, 100)");
         graph.point([a], [0], "rgb(60, 200, 200)", 4);//a-zero
         graph.point([a], [this.func.f(a)], "rgb(60, 200, 200)", 4);//func(a)
-        
-        var verticleLine = new Line(0, 0, b);
-        if (this.func.f(b) <= 0) var set = sw.sweepSwitch(verticleLine.line.bind(verticleLine), this.func.f(b), -0.1, .1);//line to func(est)
-        else var set = sw.sweepSwitch(verticleLine.line.bind(verticleLine), 0.1, this.func.f(b), .1);//line to func(est)
-        graph.point(set[0],set[1], "rgb(3, 100, 100)", .5);
+        graph.dottedLine(b, 0, b, this.func.f(b), "rgb(3, 100, 100)");
         graph.point([b], [0], "rgb(60, 100, 100)", 4);//b-zero
         graph.point([b], [this.func.f(b)], "rgb(60, 100, 100)", 4);//func(b)
-
         graph.point([c], [0.0], "rgb(200, 0, 0)", 4);//new zero
         graph.graph();
 

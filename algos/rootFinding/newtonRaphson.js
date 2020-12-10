@@ -39,22 +39,18 @@ function NewtonRaphson(func, min) {
         x = x - d;
         fx = this.func.f(x);
         if (Math.abs(d) < tol) return(1);
-        return([fp, x, fx, d]);
+        return([x]);
     }
 
     this.newtonRaphsonStepDraw = function(guess, graph) {
-        var sw = new Sweep();
-        this.func.fDraw(graph)
-        
-        var verticleLine = new Line(0, 0, guess);
-        if (this.func.f(guess) <= 0) var set3 = sw.sweepSwitch(verticleLine.line.bind(verticleLine), this.func.f(guess), -0.1, .6);//line to func(est)
-        else var set3 = sw.sweepSwitch(verticleLine.line.bind(verticleLine), 0.1, this.func.f(guess), .6);//line to func(est)
-        graph.point(set3[0],set3[1], "rgb(3, 100, 100)", .5);
+        let sw, tanLine, set;
+        this.func.fDraw(graph);
+        graph.dottedLine(guess, 0, guess, this.func.f(guess), "rgb(3, 100, 100)");
         graph.point([guess], [0], "rgb(60, 200, 200)", 4);//est-zero
         graph.point([guess], [this.func.f(guess)], "rgb(90, 90, 200)", 4);//func(est)
-
-        var tanLine = new Line(this.func.fP(guess, 1.0e-8), guess, this.func.f(guess));//tangent line
-        var set = sw.sweep(tanLine.line.bind(tanLine), graph.xRange[0], graph.xRange[1], .01)
+        tanLine = new Line(this.func.fP(guess, 1.0e-8), guess, this.func.f(guess));//tangent line
+        sw = new Sweep(tanLine);
+        set = sw.sweep(tanLine, graph.xRange[0], graph.xRange[1], .01)
         graph.plot(set[0],set[1], "rgb(3, 100, 100)");//tangent line
         if (Math.abs(this.func.fP(guess, 1.0e-8)) < min) {
             console.log("newton_raphson: Derivative too small");

@@ -1,8 +1,10 @@
-function RegulaFalsi(func) {
-    this.func = func;
+class RegulaFalsi {
+    constructor(func) {
+        this.func = func;
+    }
     
-    this.regulaFalsi = function(a, b, nmax, tol) {
-        var fa, fb, c, cprev, fc, n, keep, keepF;
+    regulaFalsi = function(a, b, nmax, tol) {
+        let fa, fb, c, cprev, fc, n, keep, keepF;
         fa = this.func.f(a);
         fb = this.func.f(b);
 
@@ -41,8 +43,8 @@ function RegulaFalsi(func) {
         return([c, keep, fc, keepF]);
     }
 
-    this.regulaFalsiStep = function(a, b) {
-        var fa,fb,c,fc,keep,keepF;
+    regulaFalsiStep = function(a, b) {
+        let fa,fb,c,fc,keep,keepF;
         fa = this.func.f(a);
         fb = this.func.f(b);
 
@@ -67,33 +69,24 @@ function RegulaFalsi(func) {
         return([c, keep, fc, keepF]);
     }
 
-    this.regulaFalsiDrawStep = function(a, b) {
-        var fa,fb,c,fc,keep,keepF;
+    regulaFalsiDrawStep = function(a, b) {
+        let fa,fb,c,fc,keep,keepF,sw,secM, secLine,set;
         fa = this.func.f(a);
         fb = this.func.f(b);
 
-        var sw = new Sweep();
         this.func.fDraw(graph)
-        var verticleLine = new Line(0, 0, a);
-        if (this.func.f(a) <= 0) var set = sw.sweepSwitch(verticleLine.line.bind(verticleLine), this.func.f(a), -0.1, .1);//line to func(est)
-        else var set = sw.sweepSwitch(verticleLine.line.bind(verticleLine), 0.1, this.func.f(a), .1);//line to func(est)
-        graph.point(set[0],set[1], "rgb(3, 100, 100)", .5);
+        graph.dottedLine(a, 0, a, this.func.f(a), "rgb(3, 100, 100)");
         graph.point([a], [0], "rgb(60, 200, 200)", 4);//a-zero
         graph.point([a], [this.func.f(a)], "rgb(60, 200, 200)", 4);//func(a)
-
-        var verticleLine = new Line(0, 0, b);
-        if (this.func.f(b) <= 0) var set = sw.sweepSwitch(verticleLine.line.bind(verticleLine), this.func.f(b), -0.1, .1);//line to func(est)
-        else var set = sw.sweepSwitch(verticleLine.line.bind(verticleLine), 0.1, this.func.f(b), .1);//line to func(est)
-        graph.point(set[0],set[1], "rgb(3, 100, 100)", .5);
+        graph.dottedLine(b, 0, b, this.func.f(b), "rgb(3, 100, 100)");
         graph.point([b], [0], "rgb(60, 100, 100)", 4);//b-zero
         graph.point([b], [this.func.f(b)], "rgb(60, 100, 100)", 4);//func(b)
-
-        secM = ((fb - fa)/(b - a))
-        var secLine = new Line(secM, a, fa);//sec line
-        var set = sw.sweep(secLine.line.bind(secLine), graph.xRange[0], graph.xRange[1], .01)
+        secM = ((fb - fa)/(b - a));
+        secLine = new Line(secM, a, fa);//sec line
+        sw = new Sweep(secLine);
+        set = sw.sweep(secLine, graph.xRange[0], graph.xRange[1], .01);
         graph.plot(set[0],set[1], "rgb(3, 100, 100)");//sec line
 
-        
         c = (fb * a - fa * b) / (fb - fa);
         fc = this.func.f(c);
         if (fa * fc < 0.0) {
