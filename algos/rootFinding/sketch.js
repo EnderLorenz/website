@@ -53,7 +53,7 @@ newtonStep = function(fn) {
 
 secantStep = function(fn) {
     graph = new Graph(ctx, [ranges[0], ranges[1]], [ranges[2], ranges[3]]);
-    if (Math.abs(guess[0]) > 1000*xMax || (guess.length == 5 && Math.abs(guess[4]) < 1.0e-10)) {
+    if (Math.abs(guess[0]) > 1000*xMax) {
         document.getElementById("res").innerHTML = "Answer diverged. Try different initial points";
         setupPlot();
     } else {
