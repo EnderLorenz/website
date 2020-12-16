@@ -1,16 +1,18 @@
-function LinkedList() {
-    this.size = 0;
-    this.head = null;
-
-    this.getSize = function() {
+class LinkedList {
+    constructor() {
+        this.size = 0;
+        this.head = null;
+    }
+    
+    getSize = function() {
         return this.size;
     };
 
-    this.getHead = function() {
+    getHead = function() {
         return this.head;
     };
 
-    this.add = function(data) {
+    add = function(data) {
         var node = new Node(data);
         if (this.head === null) {
             this.head = node;
@@ -24,7 +26,7 @@ function LinkedList() {
         this.size++;
     };
 
-    this.remove = function(data) {
+    remove = function(data) {
         var currentNode = this.head;
         var previousNode = null;
 
@@ -44,7 +46,7 @@ function LinkedList() {
         return -1;
     };
 
-    this.insertAt = function(index, data) {
+    insertAt = function(index, data) {
         if (index > 0 && index > this.size) return false;
         else {
             var node = new Node(data);
@@ -68,7 +70,7 @@ function LinkedList() {
         }
     };
 
-    this.removeFrom = function(index) {
+    removeFrom = function(index) {
         if (index > 0 && index > this.size) return -1;
         else {
             var currentNode, previousNode;
@@ -91,7 +93,7 @@ function LinkedList() {
         }
     }
 
-    this.indexOf = function(data) {
+    indexOf = function(data) {
         var count = 0;
         var currentNode = this.head;
         while (currentNode != null) {
@@ -102,11 +104,11 @@ function LinkedList() {
         return -1;
     };
 
-    this.isEmpty = function() {
+    isEmpty = function() {
         return this.size == 0;
     };
 
-    this.printList = function() {
+    printList = function() {
         var currentNode = this.head;
         var str = "";
         while (currentNode) {

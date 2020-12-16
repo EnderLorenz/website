@@ -20,8 +20,6 @@ class Graph {
         this.shift2 = 5;
         this.xGraph = [this.shift, cw - 50 - this.shift]
         this.yGraph = [1, ch-this.shift]
-
-        // ctx.setTransform(1, 0, 0, 1, 0, 0); // reset transform
         ctx.globalAlpha = 1; 
         ctx.clearRect(0, 0, cw, ch);
     }

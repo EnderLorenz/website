@@ -1,11 +1,6 @@
-var size, sparcity;
-var ind = 0;
-let cost = 0;
-let graph, uf, mst, visited, visited2, s, q, edges, depthGraph;
 let input, input2, button, button2, button3, button4, button5;
 let kruskalBoolean, dfsBoolean, bfsBoolean, dijkstraBoolean;
-var done, extraDone, superDone;
-
+let b,d,k;
 
 
 function setup() {
@@ -55,54 +50,38 @@ function setup() {
   button6.position(input.x, button3.y+button3.height);
   button6.mousePressed(dijkstraButton);
 
-  size = 5;
-  sparcity = .25;
-  st = new Start
+  st = new Start();
   st.start();
 }
 
 
 
 function draw() {
-  if (bfsBoolean) {
-    b = new Bfs;
-    b.bfsOpen();
-  }
-  if (dfsBoolean) {
-    d = new Dfs;
-    d.dfsOpen()
-  }
-  if (kruskalBoolean) {
-    k = new Kruskal;
-    k.kruskalOpen() 
-  }
-
-  if (dijkstraBoolean) {
-    d = new Dijktra;
-    d.dijktraOpen() 
-  }
-
+  if (bfsBoolean) b.bfsOpen();
+  if (dfsBoolean) d.dfsOpen()
+  if (kruskalBoolean) k.kruskalOpen() 
+  if (dijkstraBoolean) d.dijktraOpen() 
 }
 
 function nodesButton() {
-  num = input.value();
-  input.value('');
-  if (num > 0 && num < 101 && isInt(num)) {
-    input.attribute('placeholder', num);
-    size = num;
-    st = new Start;
-    st.start();  
+  if (input.value() > 0 && input.value() < 101 && isInt(input.value())) {
+    kruskalBoolean = false;
+    dfsBoolean = false;
+    bfsBoolean = false;
+    dijkstraBoolean = false;
+    let st = new Start();
+    st.start();
   } else input.attribute('placeholder', 'Integer 0 - 100');
 }
 
 function sparcityButton() {
-  num = input2.value();
-  input2.value('');
-  if (num >= 0 && num <= 100) {
-    input2.attribute('placeholder', num + '%');
-    sparcity = num*.01;
-    st = new Start;
-    st.start();  
+  if (input2.value() >= 0 && input2.value() <= 100) {
+    kruskalBoolean = false;
+    dfsBoolean = false;
+    bfsBoolean = false;
+    dijkstraBoolean = false;
+    let st = new Start(input.value(), input2.value());
+    st.start();
   } else input2.attribute('placeholder', '0 - 100%');
 }
 
@@ -111,8 +90,7 @@ function kButton() {
   dfsBoolean = false;
   bfsBoolean = false;
   dijkstraBoolean = false;
-  st = new Start;
-  st.start();
+  k = new Kruskal;
 }
 
 function dfsButton() {
@@ -120,8 +98,7 @@ function dfsButton() {
   bfsBoolean = false;
   kruskalBoolean = false;
   dijkstraBoolean = false;
-  st = new Start;
-  st.start();
+  d = new Dfs;
 }
 
 function bfsButton() {
@@ -129,8 +106,8 @@ function bfsButton() {
   dfsBoolean = false;
   kruskalBoolean = false;
   dijkstraBoolean = false;
-  st = new Start;
-  st.start();
+  b = new Bfs;
+
 }
 
 function dijkstraButton() {
@@ -138,8 +115,7 @@ function dijkstraButton() {
   bfsBoolean = false;
   dfsBoolean = false;
   kruskalBoolean = false;
-  st = new Start;
-  st.start();
+  d = new Dijktra;
 }
 
 function isInt(value) {

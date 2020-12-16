@@ -1,62 +1,63 @@
-function Start() {
-    this.start = function() {
-        background(255)
-        ind = -1;
-        bool = false;
-        graph = null
-        graph = new Graph;
-        visited = [];
-        visited2 = [];
-        for (var i = 0; i < size; i++) {
-          tmp = new Vertex(i);
-          visited.push(false);
-          visited2.push(false);
-          graph.vertices.push(tmp)
-        }
-        for (var i = 0; i < size; i++) {
-          for (var j = i+1; j < size; j++) {
-            var test = random(1);
-              if (test > sparcity) {
-                var c = random(1,1000);
-                tmp = new Edge(graph.vertices[i], graph.vertices[j], c)
-                graph.edges.push(tmp)
-                graph.vertices[i].adjacentNodesCost.push(c)
-                graph.vertices[i].adjacentNodes.push(graph.vertices[j])
-                graph.vertices[j].adjacentNodesCost.push(c)
-                graph.vertices[j].adjacentNodes.push(graph.vertices[i])
-              }
-          }
-        }
-        
-        graph.edges.sort( function(a, b){
-          if(a.cost > b.cost) return 1;
-          if(a.cost < b.cost) return -1;
-          return 0;
-        });
-        graph.show(color(79, 100), color(80, 80, 174))
-        uf = new UnionFind(graph.vertices.length)
-        mst = new Graph;
-        depthGraph = new Graph;
-        s = new Stack;
-        q = new Queue;
-        edges = new Stack;
-        s.push(graph.vertices[0])
-        q.enqueue(graph.vertices[0])
-        visited[0] = true;
+class Start {
 
-        openSet = [];
-        closedSet = [];
-        total = 0;
-        done = false;
-        extraDone = false;
-
-        current = graph.vertices[0];
-        start = graph.vertices[0];
-        end = graph.vertices[graph.vertices.length-1];
-        openSet.push(start);
-        openS = null;
-        closedS = null;
-        pathS = null;
-
+    constructor(size, sparcity) {
+      if (input.value() > 0 && input2.value() > .001) {
+        this.size = input.value();
+        this.sparcity = input2.value();
+      } else if (size && sparcity) {
+          this.size = size;
+          this.sparcity = sparcity;
+      } else if (input.value() > 0) {
+        this.size = input.value();
+        this.sparcity = .25;
+      } else if (input2.value() > 0 && input2.value() <= 100) {
+        this.size = 5;
+        this.sparcity = input2.value()*.01;
+      } else {
+        this.size = 5;
+        this.sparcity = .25;
       }
+      this.graph = new Graph;
+      this.visited = [];
+      this.visited2 = [];
+    }
+
+    start = function() {
+        background(255)
+        this.createGraph();
+        this.sortGraph();
+        this.graph.show(color(79, 100), color(80, 80, 174))
+      }
+
+      createGraph = function() {
+        for (let i = 0; i < this.size; i++) {
+          let tmp = new Vertex(i);
+          this.visited.push(false);
+          this.visited2.push(false);
+          this.graph.vertices.push(tmp)
+        }
+
+        for (let i = 0; i < this.size; i++) {
+          for (let j = i+1; j < this.size; j++) {
+              let test = random(1);
+              if (test > this.sparcity) {
+                let c = random(1,1000);
+                let tmp = new Edge(this.graph.vertices[i], this.graph.vertices[j], c)
+                this.graph.edges.push(tmp)
+                this.graph.vertices[i].adjacentNodesCost.push(c)
+                this.graph.vertices[i].adjacentNodes.push(this.graph.vertices[j])
+                this.graph.vertices[j].adjacentNodesCost.push(c)
+                this.graph.vertices[j].adjacentNodes.push(this.graph.vertices[i])
+              }
+            }
+        }
+      }
+
+      sortGraph = function() {
+        this.graph.edges.sort( function(a, b){
+        if(a.cost > b.cost) return 1;
+        if(a.cost < b.cost) return -1;
+        return 0;});
+      }
+      
 }
