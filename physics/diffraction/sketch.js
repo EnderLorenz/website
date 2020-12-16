@@ -28,7 +28,7 @@ function draw3() {
     ctx.clearRect(0, 0, cw, ch);
     var diff = new Diffraction(1.0,D01,D11,lambda1,xSrc1,lambda21,xSrc21);
     var sw = new Sweep();
-    var sets = sw.sweep(diff.diffractionDouble.bind(diff), -10, 10, .01)
+    var sets = sw.sweep(diff.diffractionDouble.bind(diff), -20, 20, .01)
     graph = new Graph(ctx);
     graph.plot(sets[0],sets[1], "rgb(203, 100, 100)")
     graph.graph();

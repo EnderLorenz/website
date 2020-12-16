@@ -53,7 +53,7 @@
     <div class = "text">
       <p><h2>Muon Decay Data Analysis</h2></p>
       <p><h4>Introduction</h4></p>
-      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On this page discusses how I plotted and analyzed
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;How I plotted and analyzed
           some data for a muon decay experiment.  I do not want to include the final 
           lab report since it is a common excersise for lots of students.  
           Originally, I did minimal work in Mathematica and have 
@@ -61,8 +61,8 @@
           the <a href="muon.nb" target = 'blank'>notebook</a> and the 
           <a href="muon.pdf" target = 'blank'>pdf</a> with results.
           The <a href="sift.dat" target = 'blank'>sifted data</a>
-          was pasted into the notebook to make keep everything together but, the 
-          import and clean step shows how to import the data from a file.
+          was pasted into the notebook to keep everything together but, the 
+          "import and clean" step shows how to import the data from a file.
           The <a href="unsifted.dat" target = 'blank'>Unsifted data</a> file is only small part
           of the original, which is over 10mb.  Finally, here are
           <a href="muon.ipynb" target = 'blank'>Python</a>, 
@@ -71,15 +71,18 @@
           <a href="muon_c/" target = 'blank'>C_code</a>
           files I made as well.  The C code was mostly written by me outside of a few routines from 
           when I took Comp Phys and a couple other cited sources.  Please be aware that they do not include any data but, they do have import statements.
-          Given all the different plotting routines and built in functions I used it is tough 
-          to say how well the other programs will work in gneral.  The Mathematica notebook is pretty robust and should be more than enough.  
+          The Mathematica notebook is pretty robust and should be more than enough.  
+          Python, being very popular for science, provides another outlet for practice.  
+          The plotting routines use the latex font so, be aware of what packages you may or may not have as well as where the data is located on your computer for importing.
       </p>
       <p><h4>Import and Clean Data</h4></p>
       <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Currently, the go to method for importing the raw data
         in Mathematica is ReadList[].  ReadList[] is the fastest function for the raw data file which contains 
         several extra time stamps in addition to the decay time recordings.  So, those values over 39999 are removed while importing. Additionally, the 
         decay times are the first column and a date and time stamp for the second column. This is the difference between the sifted and unsifted data files.
-        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Now, Histogram and delete the first bin (both the height and location) and delete the added bin location (bin location over 20,000) to keep the set rectangular and Mathematica happy and able to perform
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Now, Histogram and delete the first bin (both the height and 
+        location) and delete the added bin location 
+        (bin location over 20,000) to keep the set rectangular and Mathematica happy and able to perform
         the next step. Why delete the first bin? This question is for the student to answer but, it has to do with the detector apparatus.
         Then, transpose the histogram list and set equal a variable.  Histogram[] allows for the bin widths
         to be set by the user.  Then, transpose the histogram list and set equal a variable for use with the NonLinearModelFit[] function.  
@@ -88,17 +91,17 @@
       <p><h4>Perform NLM Fit</h4></p>
       <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Embarassingly, this step took me awhile.  The main problem I had was that
         I needed to provide a guess to NonlinearModelFit[] and I struggled with the Mathematica syntax and documentation.
-        Something to consider is that we are doing math, not physics, at this point so you could always
+        Something to consider is that we are doing math, not physics, at this point so you should
         scale the independent variable so that the decay time is closer to one.  One is the default guess
         for Mathematica which might not help you.
       </p>
       <p><h4>Plot and LSQ</h4></p>
       <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yes, I got carried away with the plotting features.
         While discussing the experiment with my professors they suggested least squares methods and there are
-        a couple options for fitting an exponential function weighted and unweighted.  In order to find the background, the average of several 
-        values from the tail end was used.  The residuals were plotted as were the distributions
-        for the error sizes for each fit.  I guess the more normal the better.  Checking whether or not the data 
-        is normally distributed can also be checked.  
+        a couple options for fitting an exponential function, weighted and unweighted.  
+        In order to estimate the background for the least squarers fits, I used the average of several 
+        values from the tail end.  The residuals were plotted as were the distributions
+        for the error sizes for each fit.  The closer normal the better.
       </p>
     </p><p><h4>Step 13</h4></p>
       <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Step 13: Take a fresh data sample of 2000 good decay events. For each successive group of 50 events, count
@@ -107,7 +110,10 @@
       </p>
     </p><p><h4>Conclusion</h4></p>
     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I am sure nobody will read all of this but, in summation
-       I did too much work just to fit a curve to some data.  
+      I fit a curve to some data in C, Python, MATLAB, and Mathematica.  First, I import and clean the data.  Next, the programs histogram the input.  
+      After, an exponential curve is fit to the data using three methods, least squares, weighted least squares, and Gradient descent.  
+      In mathematica the statistical distribution of the residuals is analyzed.  Finally, the programs perform an analysis
+      on the binomial distribution of the decay times.  
     </p>
   </body>
 </html>
