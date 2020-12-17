@@ -45,10 +45,10 @@
       </div>
       <div class="right-side">
           <div class="nav-link-wrapper">
-              <a href="../../">Home</a>
+              <a href="../../index.html">Home</a>
           </div>
           <div class="nav-link-wrapper">
-            <a href="../">Physics</a>
+            <a href="../index.html">Physics</a>
         </div>
           <div class="nav-link-wrapper">
               <a href="../../files/about.html">About</a>
@@ -58,20 +58,83 @@
   </head>
 
   <body>
-    <div class="gallerysCanvas">
-      <div class="button-wrapper" id="buttons">
-        <div class = "button">
-          <button onclick="simulateButton()">Simulate</button>
+    <div class = "text">
+      <p><h1>
+        Monte carlo simulation of the mean free path in two dimensions
+      </h1></p>
+    </div>
+      <div class="gallerysCanvas">
+        <div class="button-wrapper" id="buttons">
+          <div class = "button">
+            <button onclick="simulateButton()">Simulate</button>
+          </div>
+          <div class = "button">
+            <button onclick="graphButton()">Graph</button>
+          </div>
         </div>
-        <div class = "button">
-          <button onclick="graphButton()">Graph</button>
-        </div>
-      </div>
-      <p id="res"> Mean of 55 arrows in 0 forrests: &mu; = 0</p>
-      <div class="canvas" id ="canvas">
-        <script src="sketch.js" type="text/javascript"></script>            
+        <p id="res"> Mean of 55 arrows in 0 forrests: &mu; = 0</p>
+        <div class="canvas" id ="canvas">
+          <script src="sketch.js" type="text/javascript"></script>            
+        </div> 
       </div> 
-      
-    </div> 
+
+      <div class = "textMFP">
+        <!-- <p> -->
+        <h3>Theoretical Calculation</h3>
+          In this problem the average number of particles per unity area is &sigma; = 0.005m<sup>-2</sup> 
+          and average radius of a particle is R = 1m.
+          So, what is the average length l that an arrow will travel?
+          The effective cross section of a collision is 2R since this is a two dimensional problem 
+          and the arrow is infintely thin. So, <br>
+          l = 1/(2R&sigma;) = 1/(2*1m*0.005m<sup>-2</sup>) = 100m.
+        <h3>Simulation</h3>
+          In order to save computation time, the simulation only uses 1/4 of the unit circle.
+          Thus, the number of trees is &pi;r<sup>2</sup>/4*0.005. Here, r = 900m is the radius of the forrest.
+          The trees are "planted" using a random number between 0-900 for each x and y.  As objects in the program, a forrest
+          consists of trees. Tree's data consists of their x and y locations, their distances and they have the 
+          functionality of being able to draw themselves.
+          In order to have an even distribution in the quarter circle, trees are replanted until their radius is 
+          less than or equal to 900m.  Other seemingly crafty methods will result in an uneven distribution.
+          Using a shape other than a circle will skew the results. 
+          Next, The arrow is "shot" at a random angle which is chosen by a random number between 0-&pi;/2.
+          After the arrow is "shot" the angle is used to determine the equation of a line with the given angle,
+          m = tan(&theta;) -> y = mx since the arrow starts at the origin.  The arrow object keeps track of is angle,
+          slope, hit distance and has a function for a line and the ability to draw itself.
+          Then, the program loops through every tree to see if the arrow hit a tree.  In order to do this we use the equation
+          of a circle (x - h)<sup>2</sup>+ (y-k)<sup>2</sup> = r<sup>2</sup>. Where h is the x coordinate, k is the y coordinate,
+          and r = 1 is the radius of the tree.  We now have two equations and two unknowns.
+          Since I'm not a fan of math and I like to know I have the right answer, I use mathematica.
+          <br>
+          Try this:<br><br>
+          Clear["Global`*"] <br>
+          Solve[r*r == (x - h)^2 + (y - k)^2 && y == m*x + b, {x, y}] // FullSimplify<br>
+          which gives: <br>
+          {{x -> (h - b m + k m - Sqrt[-(b - k + h m)^2 + (1 + m^2) r^2])/(1 + m^2), y -> (b + m (h + k m - Sqrt[-(b - k + h m)^2 + (1 + m^2) r^2]))/(1 + m^2)}, <br>
+          {x -> (h - b m + k m + Sqrt[-(b - k + h m)^2 + (1 + m^2) r^2])/(1 + m^2), y -> (b + m (h + k m + Sqrt[-(b - k + h m)^2 + (1 + m^2) r^2]))/(1 + m^2)}}. <br>
+          <br> Now, setting b = 0, r = 1, and taking the first solution since it is closer to the origin in this problem: <br><br>
+          Clear["Global`*"] <br>
+          b = 0; <br>
+          r = 1; <br>
+          First[FullSimplify[Solve[r*r == (x - h)^2 + (y - k)^2 && y == m*x + b, {x, y}]]] <br>
+          which gives: <br>
+          {x -> (h + k m - Sqrt[1 - (k + m - h m) (k - (1 + h) m)])/(1 + m^2), y -> (m (h + k m - Sqrt[1 - (k + m - h m) (k - (1 + h) m)]))/(1 + m^2)}
+          <br><br>
+          Great! Now, we need to analyze the value inside the square root, &delta; = 1 - (k + m - h m) (k - (1 + h) m), first.  
+          If &delta; < 0 then there is no collision.
+          If &delta; = 0 then the line is tangent.
+          If &delta; > 0 then we have a collsion, compute the coordinates using the above equations and calculate the distance.
+          Now, we need to make sure we check all the trees but, while many may hit we only want the closest.  The mean, &mu;, is calculated
+          as we go along by simply adding the result for each arrow to a variable and dividing by the total number of arrows shot so far.
+          One hundred arrows are shot in each forrest. Then, the forrest is "replanted".
+        <h3>Analysis</h3>
+        In order to graph the data, the hit distances are first binned using a binwidth of ten meters.  
+        If it so happens that an arrow did not hit any trees its hit distances is taken as 10 + the last bin.
+        For example, if two arrows escape, the first hit distance is 910 meters and the second is 920 meters.
+        Using this method we are able to simulate a background count on top of the random noise inherent in generation
+        if random numbers for the tree locations and arrow slope.
+        Binning the data we see what looks like an exponential curve.  Using a weighted least sqaures fit we
+        can see an interesting result.
+        </p>
+      </div>
   </body>
 </html>

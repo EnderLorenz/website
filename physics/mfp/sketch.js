@@ -15,7 +15,7 @@ function display() {
         res = fit.wlsq();
         exp = new Exponential(res[0], res[1], 0);
         exp.exponentialDraw(graph, 0, binning.bins[binning.bins.length-1], "rgb(20, 150, 250)");
-        document.getElementById("res").innerHTML = "Binning the hit distances and performing a Weighted Least Sqaures Exponential Fit:<br>" + res[0].toFixed(1) + "*Exp(-x/" + (-1/res[1]).toFixed(1) + ")"; 
+        document.getElementById("res").innerHTML = "Histogram of hit distances and a Weighted LSQ Exp Fit:<br>" + res[0].toFixed(1) + "*Exp(-x/" + (-1/res[1]).toFixed(1) + ")"; 
         graph.graph()
     }    
 }
@@ -47,8 +47,12 @@ var runningTotal = 0, count = 0, graphing = false, simulating = true, sim;
 
     resizeCanvas = function () {
         if (canvas === undefined) canvas = createCanvas();
-        canvas.width = innerWidth - 50;
-        canvas.height = innerHeight - 50;
+        canvas.width = innerWidth-50;
+        canvas.height = innerWidth-50;
+        if (canvas.height > innerHeight) {
+          canvas.height = innerHeight-50;
+          canvas.width = canvas.height-50;
+        }
         ctx = canvas.getContext("2d");
         if (typeof setGlobals === "function") {
             setGlobals();

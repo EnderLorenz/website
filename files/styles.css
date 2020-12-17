@@ -228,6 +228,12 @@ margin-left: 4em;
     margin-right: 4em;
   }
 
+  .textMFP {
+    margin-top: -10em;
+    margin-left: 4em;
+    margin-right: 4em;
+  }
+
   .img img:hover{
     transform: scale(.9);
   }
@@ -240,6 +246,11 @@ margin-left: 4em;
     }
     .text {
       margin-left: 1.5em;
+    }
+    .textMFP {
+      margin-top: -10em;
+      margin-left: 4em;
+      margin-right: 4em;
     }
     .sketch{
       margin: 10px 0;
