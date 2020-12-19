@@ -7,9 +7,9 @@ function Particle(x, y) {
     this.minX = 0;
     this.maxY = 0;
     this.minY = 0;
-    this.r = Math.floor(Math.random() * 255);
-    this.g = Math.floor(Math.random() * 255);
-    this.b = Math.floor(Math.random() * 255);
+    this.r = Math.floor(Math.random() * 155);
+    this.g = Math.floor(Math.random() * 155);
+    this.b = Math.floor(Math.random() * 155);
     this.distance = Math.sqrt(this.x * this.x + this.y * this.y);
   
     this.move = function() {
@@ -42,11 +42,7 @@ function Particle(x, y) {
         for (var i = 0; i < this.xSet.length; i++) {
             scaleX = scale(this.xSet[i], -xMin, -xMax, xGraph[1], xGraph[0]);
             scaleY = scale(this.ySet[i], yMin, yMax, yGraph[1], yGraph[0]);
-            ctx.beginPath();
-            ctx.strokeStyle = "rgb(" + this.r + "," + this.g + "," + this.b + ")";
-            ctx.arc(scaleX, scaleY, 4, 0, 2*Math.PI);
-            ctx.fillStyle = "rgb(" + this.r + "," + this.g + "," + this.b + ")";
-            ctx.fill();
+
             if (this.xSet.length > 1 && i > 0) {
                 ctx.beginPath();
                 ctx.moveTo(scaleX, scaleY);
@@ -57,14 +53,35 @@ function Particle(x, y) {
             prevScaleX = scaleX;
             prevScaleY = scaleY;
         }
+
+        for (var i = 0; i < this.xSet.length; i++) {
+            scaleX = scale(this.xSet[i], -xMin, -xMax, xGraph[1], xGraph[0]);
+            scaleY = scale(this.ySet[i], yMin, yMax, yGraph[1], yGraph[0]);
+
+            ctx.beginPath();
+            ctx.strokeStyle = "rgb(" + this.r + "," + this.g + "," + this.b + ")";
+            ctx.arc(scaleX, scaleY, 4, 0, 2*Math.PI);
+            ctx.fillStyle = "rgb(" + this.r + "," + this.g + "," + this.b + ")";
+            ctx.fill();
+        }
+
+
         ctx.stroke();
         ctx.fillStyle = "black"
         ctx.strokeStyle = "black";
 
     }
 
+    
+
     const scale = (num, in_min, in_max, out_min, out_max) => {
         return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
     }
 
   }
+
+
+
+
+
+
