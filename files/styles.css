@@ -149,12 +149,14 @@ body {
   .button-wrapperMFP {
     /* display: inline-block; */
     /* justify-content: space-between; */
-    margin-top: -1em;
+    margin-top: 1em;
     padding: 0px;
+    z-index: 4;
   }
   
   .button-wrapper {
     padding: 0px;
+    /* border:1px solid black; */
   }
 
   .button {
@@ -162,6 +164,7 @@ body {
     width: 100%;
     max-width: 139px;
     margin: 0px;
+    /* border:1px solid black; */
   }
 
 

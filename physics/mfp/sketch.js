@@ -52,7 +52,7 @@ var runningTotal = 0, count = 0, graphing = false, simulating = true, sim;
             canvas.height = innerWidth-75;
             if (innerWidth > innerHeight) {
                 canvas.height = innerHeight - 75;
-                canvas.width = canvas.height - 75;
+                canvas.width = canvas.height;
             } 
             document.getElementById('canvas').style.height= (canvas.width) + 'px';
         } 
