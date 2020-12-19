@@ -40,19 +40,23 @@ var runningTotal = 0, count = 0, graphing = false, simulating = true, sim;
         var c, cs;
         cs = (c = document.createElement("canvas")).style;
         div = document.getElementById("canvas");
-        cs.zIndex = 1000;
+        cs.zIndex = -1;
         div.appendChild(c);
         return c;
     }
 
     resizeCanvas = function () {
-        if (canvas === undefined) canvas = createCanvas();
-        canvas.width = innerWidth-50;
-        canvas.height = innerWidth-50;
-        if (canvas.height > innerHeight) {
-          canvas.height = innerHeight-50;
-          canvas.width = canvas.height-50;
-        }
+        if (canvas === undefined) {
+            canvas = createCanvas();            
+            canvas.width = innerWidth-75;
+            canvas.height = innerWidth-75;
+            if (innerWidth > innerHeight) {
+                canvas.height = innerHeight - 75;
+                canvas.width = canvas.height - 75;
+            } 
+            document.getElementById('canvas').style.height= (canvas.width) + 'px';
+        } 
+
         ctx = canvas.getContext("2d");
         if (typeof setGlobals === "function") {
             setGlobals();

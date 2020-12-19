@@ -102,7 +102,7 @@ body {
   }
 
   .gallerysCanvas{
-    padding: 5px;
+    padding: 0px;
     text-align: center;
   }
 
@@ -122,19 +122,49 @@ body {
     display: inline-block;
     padding: 25px;
   }
-  
-  .button-wrapper {
+  .gallerysCanvasMFP{
+    padding: 0px;
+    text-align: center;
+    margin-top: -5px;
+  }
+
+  .gallerysMFP{
+    padding: -15px;
+    /* overflow: hidden; */
+    text-align: center;
+    /* border:1px solid black; */
+  }
+  .gallerysCanvasMFPP{
+    /* overflow: hidden; */
+    text-align: center;
+    /* border:1px solid black; */
+  }
+
+  .canvasMFP{
+    /* display: inline-block; */
+    margin-top: -3em;
+    /* border:1px solid black; */
+    padding: 0px;
+  }  
+  .button-wrapperMFP {
     /* display: inline-block; */
     /* justify-content: space-between; */
-    padding: 3px;
+    margin-top: -1em;
+    padding: 0px;
+  }
+  
+  .button-wrapper {
+    padding: 0px;
   }
 
   .button {
     display: inline-block;
     width: 100%;
     max-width: 139px;
-    margin: 15px;
+    margin: 0px;
   }
+
+
 
   .img img{
     width: auto;
@@ -229,7 +259,7 @@ margin-left: 4em;
   }
 
   .textMFP {
-    margin-top: -10em;
+    margin-top: -12em;
     margin-left: 4em;
     margin-right: 4em;
   }

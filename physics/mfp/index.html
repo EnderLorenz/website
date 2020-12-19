@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Monte Carlo Mean Free Path</title>
   <link rel="stylesheet" href="../../files/text.css">
-  <script src="../../files/p5.min.js"></script>
   <script src="graph.js" type="text/javascript"></script>
   <script src="sweep.js" type="text/javascript"></script> 
   <script src="lsq.js" type="text/javascript"></script>
@@ -58,13 +57,20 @@
   </head>
 
   <body>
-    <div class = "text">
-      <p><h1>
+    <div class = "text" id="txt">
+      <p><h4>
         Monte carlo simulation of the mean free path in two dimensions
-      </h1></p>
+      </h4></p>
     </div>
-      <div class="gallerysCanvas">
-        <div class="button-wrapper" id="buttons">
+
+      <div class="gallerysCanvasMFP">
+        <div class ="gallerysCanvasMFPP">
+          <p id="res"> Mean of 55 arrows in 0 forrests: &mu; = 0</p>
+        </div>
+        <div class="canvasMFP" id ="canvas">
+          <script src="sketch.js" type="text/javascript"></script>            
+        </div> 
+        <div class="button-wrapperMFP" id="buttons">
           <div class = "button">
             <button onclick="simulateButton()">Simulate</button>
           </div>
@@ -72,22 +78,18 @@
             <button onclick="graphButton()">Graph</button>
           </div>
         </div>
-        <p id="res"> Mean of 55 arrows in 0 forrests: &mu; = 0</p>
-        <div class="canvas" id ="canvas">
-          <script src="sketch.js" type="text/javascript"></script>            
-        </div> 
+
       </div> 
 
-      <div class = "textMFP">
-        <!-- <p> -->
-        <h3>Theoretical Calculation</h3>
+      <div class = "text">
+        <h4>Theoretical Calculation</h4>
           In this problem the average number of particles per unity area is &sigma; = 0.005m<sup>-2</sup> 
           and average radius of a particle is R = 1m.
           So, what is the average length l that an arrow will travel?
           The effective cross section of a collision is 2R since this is a two dimensional problem 
           and the arrow is infintely thin. So, <br>
           l = 1/(2R&sigma;) = 1/(2*1m*0.005m<sup>-2</sup>) = 100m.
-        <h3>Simulation</h3>
+        <h4>Simulation</h4>
           In order to save computation time, the simulation only uses 1/4 of the unit circle.
           Thus, the number of trees is &pi;r<sup>2</sup>/4*0.005. Here, r = 900m is the radius of the forrest.
           The trees are "planted" using a random number between 0-900 for each x and y.  As objects in the program, a forrest
@@ -119,14 +121,14 @@
           which gives: <br>
           {x -> (h + k m - Sqrt[1 - (k + m - h m) (k - (1 + h) m)])/(1 + m^2), y -> (m (h + k m - Sqrt[1 - (k + m - h m) (k - (1 + h) m)]))/(1 + m^2)}
           <br><br>
-          Great! Now, we need to analyze the value inside the square root, &delta; = 1 - (k + m - h m) (k - (1 + h) m), first.  
+          Great! Now, we need to analyze the value inside the square root, &delta; = 1 - (k + m - h m) (k - (1 + h) m).  
           If &delta; < 0 then there is no collision.
           If &delta; = 0 then the line is tangent.
           If &delta; > 0 then we have a collsion, compute the coordinates using the above equations and calculate the distance.
           Now, we need to make sure we check all the trees but, while many may hit we only want the closest.  The mean, &mu;, is calculated
           as we go along by simply adding the result for each arrow to a variable and dividing by the total number of arrows shot so far.
           One hundred arrows are shot in each forrest. Then, the forrest is "replanted".
-        <h3>Analysis</h3>
+        <h4>Analysis</h4>
         In order to graph the data, the hit distances are first binned using a binwidth of ten meters.  
         If it so happens that an arrow did not hit any trees its hit distances is taken as 10 + the last bin.
         For example, if two arrows escape, the first hit distance is 910 meters and the second is 920 meters.
