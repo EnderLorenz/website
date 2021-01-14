@@ -3,7 +3,7 @@ class Start {
     constructor(size, sparcity) {
       if (input.value() > 0 && input2.value() > .001) {
         this.size = input.value();
-        this.sparcity = input2.value();
+        this.sparcity = input2.value()*.01;
       } else if (size && sparcity) {
           this.size = size;
           this.sparcity = sparcity;

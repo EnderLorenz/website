@@ -69,7 +69,8 @@ function nodesButton() {
     dfsBoolean = false;
     bfsBoolean = false;
     dijkstraBoolean = false;
-    let st = new Start();
+    let st = new Start(input.value(), input2.value()*.01);
+    console.log(input2.value())
     st.start();
   } else input.attribute('placeholder', 'Integer 0 - 100');
 }
