@@ -80,7 +80,7 @@ function sparcityButton() {
     dfsBoolean = false;
     bfsBoolean = false;
     dijkstraBoolean = false;
-    let st = new Start(input.value(), input2.value());
+    let st = new Start(input.value(), input2.value()*.01);
     st.start();
   } else input2.attribute('placeholder', '0 - 100%');
 }
