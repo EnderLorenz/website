@@ -35,7 +35,7 @@ function display() {
             exp = new Exponential(curveY[0], -1.0/curveY[1], curveY[2]);
             exp.exponentialDraw(graph, 0, binning.bins[binning.bins.length-1], "rgb(20, 150, 250)");
             document.getElementById("res").innerHTML = 
-                "Histogram of hit distances and a Weighted LSQ Exp Fit:<br>" + 
+                "Histogram of hit distances and Tensor Flow Exp Regression:<br>" + 
                 curveY[2].toFixed(1) + " + " + curveY[0].toFixed(1) + "*Exp(-x/" + (curveY[1]).toFixed(1) + ")" ; 
             graph.graph()
             calcBool = true;
