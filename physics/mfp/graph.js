@@ -32,7 +32,7 @@ class Graph {
         if (num == 0) return parseFloat(0);
         if (Math.abs(Math.log10(num)) > 5) return num.toExponential(2)
         if (Math.abs(num >= 10)) return parseFloat(num.toFixed(2));
-        if (Math.abs(num < 10 )) return parseFloat(num.toFixed(5));
+        if (Math.abs(num < 10 )) return parseFloat(num.toFixed(1));
     }
     
     dataCheck = function(xData, yData) {
