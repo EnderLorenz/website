@@ -43,8 +43,6 @@ function display() {
     }    
 }
 
-
-
 function simulateButton() {
     simulating = true;
     graphing = false;
@@ -129,7 +127,7 @@ function loss(pred, labels) {
         globalTime = timer;
         sim = new Simulate(100, 1);
         display();
-        setInterval(display, 50);
+        setInterval(display, 200);
     }
     setTimeout(function(){
         resizeCanvas();
